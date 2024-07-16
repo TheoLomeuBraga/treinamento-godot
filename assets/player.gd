@@ -10,8 +10,7 @@ var jump_power = 1200.0
 const GRAVITY = 980.2
 var jump_current_power = 0.0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func move(delta):
 	var move_input := Vector3.ZERO
 	move_input.x = Input.get_axis("left","right")
 	move_input.z = Input.get_axis("foward","back")
@@ -28,6 +27,7 @@ func _process(delta):
 			$ShapeCast3Dceling.enabled = true
 		if Input.get_action_strength("jump") > 0.0:
 			jump_current_power = jump_power
+			$AudioStreamPlayer.play()
 	
 	var hit_celing = $ShapeCast3Dceling.is_colliding()
 	if hit_celing:
@@ -40,4 +40,14 @@ func _process(delta):
 	move_and_slide()
 	
 	jump_current_power -= delta * GRAVITY
+
+func make_camera_do_stuf(delta):
+	var root = $cameraRoot
+	var cam = $Camera3D
+	
+
+func _process(delta):
+	move(delta)
+	make_camera_do_stuf(delta)
+	
 

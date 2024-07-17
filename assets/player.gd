@@ -24,15 +24,16 @@ func _input(event):
 
 var camera_movement = Vector2.ZERO
 func look_around(delta):
-	var root = $cameraRootY
+	var rootY = $cameraRootY
+	var rootX = $cameraRootY/cameraRootX
 	
 	var joystick_movement = Vector2.ZERO
 	joystick_movement.x = Input.get_axis("look_left","look_right") * joystick_sensitivity
 	joystick_movement.y = Input.get_axis("look_up","look_down") * joystick_sensitivity
 	
 	var rot_degres = Vector2.ZERO
-	rot_degres.x = rad_to_deg(root.rotation.x)
-	rot_degres.y = rad_to_deg(root.rotation.y)
+	rot_degres.x = rad_to_deg(rootX.rotation.x)
+	rot_degres.y = rad_to_deg(rootY.rotation.y)
 	
 	camera_movement += (mouse_movement / 100) + (joystick_movement)
 	
@@ -44,8 +45,10 @@ func look_around(delta):
 	if rot_degres.x > 90:
 		rot_degres.x = 90
 		
-	root.rotation.x = deg_to_rad(rot_degres.x)
-	root.rotation.y = deg_to_rad(rot_degres.y)
+	rootX.rotation.x = deg_to_rad(rot_degres.x)
+	rootY.rotation.y = deg_to_rad(rot_degres.y)
+	
+	
 
 func move(delta):
 	var move_input := Vector3.ZERO
@@ -67,20 +70,22 @@ func move(delta):
 	var hit_floor = $ShapeCast3Dfloor.is_colliding()
 	if hit_floor:
 		jump_current_power = 0
-		if jump_current_power > 0:
-			$ShapeCast3Dceling.enabled = true
+		$ShapeCast3Dceling.enabled = true
+			
 		if Input.get_action_strength("jump") > 0.0:
 			jump_current_power = jump_power
+			$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
 			$AudioStreamPlayer.play()
 	
-	var hit_celing = $ShapeCast3Dceling.is_colliding()
-	if hit_celing:
+	
+	if $ShapeCast3Dceling.is_colliding():
 		$ShapeCast3Dceling.enabled = false
 		jump_current_power = 0
 	
 	if jump_current_power != 0:
 		velocity.y = jump_current_power * delta
 	
+	print(jump_current_power)
 	move_and_slide()
 	
 	jump_current_power -= delta * GRAVITY

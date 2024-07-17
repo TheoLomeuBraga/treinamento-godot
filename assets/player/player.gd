@@ -6,12 +6,12 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
-var jump_power = 1200.0
-const GRAVITY = 980.2
+@export var jump_power = 12.0
+@export var gravity = 9.8
 var jump_current_power = 0.0
 
-var mouse_sensitivity = 12.0
-var joystick_sensitivity = 12.0
+@export var mouse_sensitivity = 12.0
+@export var joystick_sensitivity = 12.0
 
 var mouse_movement = Vector2.ZERO
 func _input(event):
@@ -40,14 +40,25 @@ func look_around(delta):
 	rot_degres.x = camera_movement.y
 	rot_degres.y = camera_movement.x 
 	
-	if rot_degres.x < -90:
-		rot_degres.x = -90
-	if rot_degres.x > 90:
-		rot_degres.x = 90
+	if rot_degres.x < -75:
+		rot_degres.x = -75
+	if rot_degres.x > 75:
+		rot_degres.x = 75
 		
 	rootX.rotation.x = deg_to_rad(rot_degres.x)
 	rootY.rotation.y = deg_to_rad(rot_degres.y)
 	
+
+@export var aim_mode = false
+func make_display_model_look(movement_direction,camera_direction):
+	var display_model = $displayModel
+	
+	if aim_mode:
+		var target_position = display_model.global_transform.origin + camera_direction
+		display_model.look_at(target_position, Vector3.UP)
+	else:
+		var target_position = display_model.global_transform.origin + movement_direction
+		display_model.look_at(target_position, Vector3.UP)
 	
 
 func move(delta):
@@ -61,11 +72,13 @@ func move(delta):
 	var right_direction = camera_root.global_transform.basis.x.normalized()
 	var movement_direction = (forward_direction * move_input.z + right_direction * move_input.x).normalized()
 
-	
+	var normalized_direction = movement_direction.normalized()
 	if $RayCast3D.is_colliding():
-		velocity = $RayCast3D.get_collision_normal().direction_to(movement_direction.normalized())  * 1200.0 * delta
+		velocity = $RayCast3D.get_collision_normal().direction_to(normalized_direction)  * 1200.0 * delta
 	else:
-		velocity = movement_direction.normalized() * 1200.0 * delta
+		velocity = normalized_direction * 1200.0 * delta
+	
+	make_display_model_look(movement_direction,-forward_direction.normalized())
 	
 	var hit_floor = $ShapeCast3Dfloor.is_colliding()
 	if hit_floor:
@@ -73,7 +86,7 @@ func move(delta):
 		$ShapeCast3Dceling.enabled = true
 			
 		if Input.get_action_strength("jump") > 0.0:
-			jump_current_power = jump_power
+			jump_current_power = jump_power * 100
 			$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
 			$AudioStreamPlayer.play()
 	
@@ -84,11 +97,10 @@ func move(delta):
 	
 	if jump_current_power != 0:
 		velocity.y = jump_current_power * delta
-	
-	print(jump_current_power)
+		
 	move_and_slide()
 	
-	jump_current_power -= delta * GRAVITY
+	jump_current_power -= delta * (gravity * 100)
 	
 	
 

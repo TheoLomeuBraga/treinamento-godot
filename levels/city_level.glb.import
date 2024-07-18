@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dmukepn4meygg"
-path="res://.godot/imported/suzane.glb-5aac20d55631b2ce2c65c3170f009d65.scn"
+uid="uid://ct5vy8wlkbd6s"
+path="res://.godot/imported/city_level.glb-f6ebb3d9c0012a570890f883ee4488d1.scn"
 
 [deps]
 
-source_file="res://3D models/suzane.glb"
-dest_files=["res://.godot/imported/suzane.glb-5aac20d55631b2ce2c65c3170f009d65.scn"]
+source_file="res://levels/city_level.glb"
+dest_files=["res://.godot/imported/city_level.glb-f6ebb3d9c0012a570890f883ee4488d1.scn"]
 
 [params]
 

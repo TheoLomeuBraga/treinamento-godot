@@ -1,7 +1,9 @@
 shader_type spatial;
 
-uniform vec4 color: source_color;
-uniform sampler2D tex: filter_nearest;
+uniform vec4 albedo_color: source_color;
+uniform sampler2D albedo_texture: filter_nearest;
+
+
 
 void vertex() {
 	
@@ -9,7 +11,7 @@ void vertex() {
 
 void fragment() {
 	
-	vec4 final_color = color * texture(tex, UV) * COLOR;
+	vec4 final_color = albedo_color * texture(albedo_texture, UV) * COLOR;
 	ALBEDO = final_color.rgb;
     ALPHA = final_color.a;
 

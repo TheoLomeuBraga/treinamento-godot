@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=12 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
+[ext_resource type="Shader" path="res://shaders/psx_geometry.gdshader" id="3_1cee6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppes8"]
 
@@ -11,10 +12,17 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y0lr8"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ymd1x"]
-albedo_color = Color(0, 0, 1, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b28f5"]
+render_priority = 0
+shader = ExtResource("3_1cee6")
+shader_parameter/color = Color(0, 0, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_dytkj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e0tk2"]
+render_priority = 0
+shader = ExtResource("3_1cee6")
+shader_parameter/color = null
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhcqd"]
 albedo_color = Color(0, 0, 0, 1)
@@ -64,12 +72,12 @@ far = 1000.0
 [node name="MeshInstance3D" type="MeshInstance3D" parent="displayModel"]
 mesh = SubResource("CapsuleMesh_y0lr8")
 skeleton = NodePath("../..")
-surface_material_override/0 = SubResource("StandardMaterial3D_ymd1x")
+surface_material_override/0 = SubResource("ShaderMaterial_b28f5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="displayModel/MeshInstance3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, 0.25, 0.5, -0.4)
 mesh = SubResource("SphereMesh_dytkj")
-surface_material_override/0 = SubResource("StandardMaterial3D_hhcqd")
+surface_material_override/0 = SubResource("ShaderMaterial_e0tk2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="displayModel/MeshInstance3D"]
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, -0.25, 0.5, -0.4)

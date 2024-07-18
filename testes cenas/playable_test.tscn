@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5hcg6606rww7"]
+[gd_scene load_steps=10 format=3 uid="uid://c5hcg6606rww7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="1_kcmgw"]
+[ext_resource type="Material" uid="uid://ij5pff0bgtoh" path="res://sound efects/psx_geometry_standard.tres" id="1_wp6ku"]
 
 [sub_resource type="Environment" id="Environment_jng03"]
 background_mode = 1
@@ -32,6 +33,7 @@ camera_attributes = SubResource("CameraAttributesPractical_bcap7")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("BoxMesh_4sr3c")
+surface_material_override/0 = ExtResource("1_wp6ku")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
@@ -41,6 +43,7 @@ shape = SubResource("ConcavePolygonShape3D_yw2bx")
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 27.4546, 6.91205, 0)
 mesh = SubResource("BoxMesh_4sr3c")
+surface_material_override/0 = ExtResource("1_wp6ku")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
 
@@ -50,6 +53,7 @@ shape = SubResource("ConcavePolygonShape3D_kikn5")
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(8.66505, -0.499168, 0, 4.99168, 0.866505, 0, 0, 0, 10, 8.89582, 2.53602, 0)
 mesh = SubResource("BoxMesh_4sr3c")
+surface_material_override/0 = ExtResource("1_wp6ku")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
 
@@ -59,6 +63,7 @@ shape = SubResource("ConcavePolygonShape3D_kfgn1")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(9.78354, -0.206938, 0, 2.06938, 0.978354, 0, 0, 0, 10, 17.8811, 5.88023, -1.90735e-06)
 mesh = SubResource("BoxMesh_4sr3c")
+surface_material_override/0 = ExtResource("1_wp6ku")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
 
@@ -71,6 +76,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.09986, 3.42066, -1.45354)
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, -4.88531, 3.94355, 0)
 mesh = SubResource("BoxMesh_4sr3c")
+surface_material_override/0 = ExtResource("1_wp6ku")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D5"]
 

@@ -58,7 +58,8 @@ func make_display_model_look(movement_direction,camera_direction):
 		display_model.look_at(target_position, Vector3.UP)
 	else:
 		var target_position = display_model.global_transform.origin + movement_direction
-		display_model.look_at(target_position, Vector3.UP)
+		if display_model.global_transform.origin != target_position:
+			display_model.look_at(target_position, Vector3.UP)
 	
 
 func move(delta):

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ij5pff0bgtoh"]
+
+[ext_resource type="Shader" path="res://shaders/psx_geometry.gdshader" id="1_stufq"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_stufq")
+shader_parameter/color = Color(1, 1, 1, 1)

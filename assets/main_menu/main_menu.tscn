@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bk8n7jxmpt2os"]
+[gd_scene load_steps=3 format=3 uid="uid://bk8n7jxmpt2os"]
 
 [ext_resource type="Script" path="res://assets/main_menu/menus.gd" id="1_0e51p"]
+[ext_resource type="PackedScene" uid="uid://dovgwxs8h0x35" path="res://assets/configiration menu/configuration_menu.tscn" id="2_l55so"]
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -63,6 +64,9 @@ text = "configurations
 layout_mode = 2
 text = "exit
 "
+
+[node name="configuration_menu" parent="." instance=ExtResource("2_l55so")]
+layout_mode = 1
 
 [connection signal="pressed" from="main_menu/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="start_menu/continue_" to="." method="_on_continue__pressed"]

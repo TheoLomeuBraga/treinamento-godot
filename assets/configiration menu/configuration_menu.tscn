@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dovgwxs8h0x35"]
+[gd_scene load_steps=2 format=3 uid="uid://dovgwxs8h0x35"]
+
+[ext_resource type="Script" path="res://assets/configiration menu/configuration_menu.gd" id="1_1s3th"]
 
 [node name="configuration_menu" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1s3th")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 1
@@ -94,3 +97,9 @@ text = "joystick sensitivity"
 layout_mode = 2
 max_value = 50.0
 value = 12.0
+
+[connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
+[connection signal="tab_selected" from="TabContainer" to="." method="_on_tab_container_tab_selected"]
+[connection signal="tab_selected" from="TabContainer/video" to="." method="_on_video_tab_selected"]
+[connection signal="toggled" from="TabContainer/video/VBoxContainer/full_screen" to="." method="_on_full_screen_toggled"]
+[connection signal="drag_ended" from="TabContainer/audio/VBoxContainer/volume" to="." method="_on_volume_drag_ended"]

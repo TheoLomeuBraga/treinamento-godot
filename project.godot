@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="treinamento godot"
-run/main_scene="res://testes cenas/city level.tscn"
+run/main_scene="res://assets/main_menu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 

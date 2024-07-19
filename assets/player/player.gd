@@ -1,16 +1,17 @@
 extends CharacterBody3D
 
 
-var paused = false
+var paused: int = false
 func pause():
 	if paused:
-		add_child(load("res://assets/configiration menu/configuration_menu.tscn").instantiate())
+		add_child(load("res://assets/main_menu/main_menu.tscn").instantiate())
 		$Menus.menu_type = 1
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	elif has_node("Menus"):
 		remove_child($Menus)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pause()
 
 
@@ -119,7 +120,7 @@ func move(delta):
 func _process(delta):
 	look_around(delta)
 	move(delta)
-	if Input.get_action_strength("pause"):
+	if Input.is_action_just_pressed("pause"):
 		paused = !paused
 		pause()
 	

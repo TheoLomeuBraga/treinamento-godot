@@ -1,9 +1,17 @@
 extends CharacterBody3D
 
 
-# Called when the node enters the scene tree for the first time.
+var paused = false
+func pause():
+	if paused:
+		add_child(load("res://assets/configiration menu/configuration_menu.tscn").instantiate())
+		$Menus.menu_type = 1
+	elif has_node("Menus"):
+		remove_child($Menus)
+		
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pause()
 
 
 @export var jump_power = 12.0
@@ -111,6 +119,8 @@ func move(delta):
 func _process(delta):
 	look_around(delta)
 	move(delta)
-	
+	if Input.get_action_strength("pause"):
+		paused = !paused
+		pause()
 	
 

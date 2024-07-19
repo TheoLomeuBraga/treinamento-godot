@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=13 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
 [ext_resource type="Shader" path="res://shaders/psx_geometry.gdshader" id="3_1cee6"]
+[ext_resource type="PackedScene" uid="uid://bk8n7jxmpt2os" path="res://assets/main_menu/main_menu.tscn" id="4_exd5g"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppes8"]
 
@@ -87,3 +88,6 @@ surface_material_override/0 = SubResource("ShaderMaterial_e0tk2")
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, -0.25, 0.5, -0.4)
 mesh = SubResource("SphereMesh_dytkj")
 surface_material_override/0 = SubResource("StandardMaterial3D_hhcqd")
+
+[node name="Menus" parent="." instance=ExtResource("4_exd5g")]
+menu_type = 1

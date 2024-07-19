@@ -103,3 +103,4 @@ value = 12.0
 [connection signal="tab_selected" from="TabContainer/video" to="." method="_on_video_tab_selected"]
 [connection signal="toggled" from="TabContainer/video/VBoxContainer/full_screen" to="." method="_on_full_screen_toggled"]
 [connection signal="drag_ended" from="TabContainer/audio/VBoxContainer/volume" to="." method="_on_volume_drag_ended"]
+[connection signal="value_changed" from="TabContainer/audio/VBoxContainer/volume" to="." method="_on_volume_value_changed"]

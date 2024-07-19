@@ -14,13 +14,17 @@ func start_menu_on(on):
 func configuration_menu_on(on):
 	if on:
 		add_child(load("res://assets/configiration menu/configuration_menu.tscn").instantiate())
-	else:
+	elif has_node("configuration_menu"):
 		remove_child($configuration_menu)
 	
 
 @export var menu_type = 0
 func select_menu_type():
-	if menu_type == 0:
+	if menu_type == -1:
+		main_menu_on(false)
+		start_menu_on(false)
+		configuration_menu_on(false)
+	elif menu_type == 0:
 		main_menu_on(true)
 		start_menu_on(false)
 		configuration_menu_on(false)

@@ -79,6 +79,9 @@ func move(delta):
 	else:
 		velocity = normalized_direction * 1200.0 * delta
 	
+	var wall_raycast = $displayModel/wallRaycast
+	
+	
 	make_display_model_look(movement_direction,-forward_direction.normalized())
 	
 	var hit_floor = $ShapeCast3Dfloor.is_colliding()

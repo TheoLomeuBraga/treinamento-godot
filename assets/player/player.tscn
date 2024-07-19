@@ -69,6 +69,10 @@ far = 1000.0
 
 [node name="displayModel" type="Node3D" parent="."]
 
+[node name="wallRaycast" type="RayCast3D" parent="displayModel"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0549091, -0.462478)
+target_position = Vector3(0, -0.3, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="displayModel"]
 mesh = SubResource("CapsuleMesh_y0lr8")
 skeleton = NodePath("../..")

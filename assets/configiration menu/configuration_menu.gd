@@ -45,4 +45,19 @@ func _on_full_screen_toggled(toggled_on):
 
 func _on_volume_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+	
+
+
+
+
+
+
+func _on_mouse_sensitivity_value_changed(value):
+	Global.variables["mouse_sensitivity"] = value
+
+
+func _on_joystick_sensitivity_value_changed(value):
+	Global.variables["joystick_sensitivity"] = value
+
+
 

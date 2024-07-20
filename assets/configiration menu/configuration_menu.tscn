@@ -62,7 +62,8 @@ text = "volume"
 
 [node name="volume" type="HSlider" parent="TabContainer/audio/VBoxContainer"]
 layout_mode = 2
-value = 75.0
+min_value = -80.0
+max_value = 0.0
 
 [node name="controls" type="TabBar" parent="TabContainer"]
 visible = false
@@ -104,3 +105,7 @@ value = 12.0
 [connection signal="toggled" from="TabContainer/video/VBoxContainer/full_screen" to="." method="_on_full_screen_toggled"]
 [connection signal="drag_ended" from="TabContainer/audio/VBoxContainer/volume" to="." method="_on_volume_drag_ended"]
 [connection signal="value_changed" from="TabContainer/audio/VBoxContainer/volume" to="." method="_on_volume_value_changed"]
+[connection signal="drag_ended" from="TabContainer/controls/VBoxContainer/mouse_sensitivity" to="." method="_on_mouse_sensitivity_drag_ended"]
+[connection signal="value_changed" from="TabContainer/controls/VBoxContainer/mouse_sensitivity" to="." method="_on_mouse_sensitivity_value_changed"]
+[connection signal="drag_ended" from="TabContainer/controls/VBoxContainer/joystick_sensitivity" to="." method="_on_joystick_sensitivity_drag_ended"]
+[connection signal="value_changed" from="TabContainer/controls/VBoxContainer/joystick_sensitivity" to="." method="_on_joystick_sensitivity_value_changed"]

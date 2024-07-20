@@ -1,9 +1,7 @@
 extends Control
 
-
-
-
-
+func _ready():
+	$pause_menu/continue_.grab_focus()
 
 func configuration_menu_on(on):
 	if on:

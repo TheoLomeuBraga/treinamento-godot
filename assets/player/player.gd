@@ -14,19 +14,17 @@ func pause():
 
 func _ready():
 	remove_child($PauseMenu)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 @export var jump_power = 12.0
 @export var gravity = 9.8
 var jump_current_power = 0.0
 
-@export var mouse_sensitivity = 12.0
-@export var joystick_sensitivity = 12.0
-
 var mouse_movement = Vector2.ZERO
 func _input(event):
 	if event is InputEventMouseMotion:
-		mouse_movement = -event.relative * mouse_sensitivity
+		mouse_movement = -event.relative * Global.variables["mouse_sensitivity"]
 		mouse_movement.x = mouse_movement.x
 	else:
 		mouse_movement = Vector2.ZERO
@@ -38,8 +36,9 @@ func look_around(delta):
 	var rootX = $cameraRootY/cameraRootX
 	
 	var joystick_movement = Vector2.ZERO
-	joystick_movement.x = Input.get_axis("look_left","look_right") * joystick_sensitivity
-	joystick_movement.y = Input.get_axis("look_up","look_down") * joystick_sensitivity
+	joystick_movement.x = -Input.get_axis("look_left","look_right") * Global.variables["joystick_sensitivity"]
+	joystick_movement.y = -Input.get_axis("look_up","look_down") * Global.variables["joystick_sensitivity"]
+	print(Global.variables["joystick_sensitivity"])
 	
 	var rot_degres = Vector2.ZERO
 	rot_degres.x = rad_to_deg(rootX.rotation.x)

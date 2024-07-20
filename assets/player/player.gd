@@ -38,7 +38,6 @@ func look_around(delta):
 	var joystick_movement = Vector2.ZERO
 	joystick_movement.x = -Input.get_axis("look_left","look_right") * Global.variables["joystick_sensitivity"]
 	joystick_movement.y = -Input.get_axis("look_up","look_down") * Global.variables["joystick_sensitivity"]
-	print(Global.variables["joystick_sensitivity"])
 	
 	var rot_degres = Vector2.ZERO
 	rot_degres.x = rad_to_deg(rootX.rotation.x)

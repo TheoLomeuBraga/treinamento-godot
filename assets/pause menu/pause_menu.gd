@@ -7,6 +7,7 @@ func configuration_menu_on(on):
 	if on:
 		add_child(load("res://assets/configiration menu/configuration_menu.tscn").instantiate())
 	elif has_node("configuration_menu"):
+		Global.save_config()
 		remove_child($configuration_menu)
 
 func pause_menu_on(on):

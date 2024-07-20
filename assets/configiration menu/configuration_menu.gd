@@ -1,7 +1,12 @@
 extends Control
 
 func _ready():
-	pass
+	Global.load_config()
+	$TabContainer/controls/VBoxContainer/mouse_sensitivity.value = Global.variables["mouse_sensitivity"]
+	$TabContainer/controls/VBoxContainer/joystick_sensitivity.value = Global.variables["joystick_sensitivity"]
+	$TabContainer/video/VBoxContainer/full_screen.button_pressed = Global.variables["full_screen"]
+	$TabContainer/audio/VBoxContainer/volume.value = Global.variables["volume"]
+	
 
 var redy_next_input = false
 func _input(event):
@@ -40,11 +45,14 @@ func _on_tab_container_tab_selected(tab):
 func _on_full_screen_toggled(toggled_on):
 	if toggled_on:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+		Global.variables["full_screen"] = true
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		Global.variables["full_screen"] = false
 
 func _on_volume_value_changed(value):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+	Global.variables["volume"] = value
 	
 
 

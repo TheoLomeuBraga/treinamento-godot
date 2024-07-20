@@ -1,18 +1,19 @@
 extends CharacterBody3D
 
 
-var paused: int = false
+var paused: bool = false
 func pause():
+	paused = !paused
 	if paused:
-		add_child(load("res://assets/main_menu/main_menu.tscn").instantiate())
-		$Menus.menu_type = 1
+		add_child(load("res://assets/pause menu/pause_menu.tscn").instantiate())
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	elif has_node("Menus"):
-		remove_child($Menus)
+	elif has_node("PauseMenu"):
+		remove_child($PauseMenu)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
+
 func _ready():
-	pause()
+	remove_child($PauseMenu)
 
 
 @export var jump_power = 12.0
@@ -121,7 +122,7 @@ func _process(delta):
 	look_around(delta)
 	move(delta)
 	if Input.is_action_just_pressed("pause"):
-		paused = !paused
 		pause()
+		
 	
 

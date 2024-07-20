@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://k234ra6vkxn6"]
+
+[ext_resource type="Script" path="res://assets/pause menu/pause_menu.gd" id="1_ugrv4"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ugrv4")
+
+[node name="pause_menu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -20.0
+offset_right = 156.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="continue_" type="Button" parent="pause_menu"]
+layout_mode = 2
+text = "continue
+"
+
+[node name="configurations" type="Button" parent="pause_menu"]
+layout_mode = 2
+text = "configurations
+"
+
+[node name="main_menu" type="Button" parent="pause_menu"]
+layout_mode = 2
+text = "main menu
+"
+
+[node name="exit" type="Button" parent="pause_menu"]
+layout_mode = 2
+text = "exit
+"
+
+[connection signal="pressed" from="pause_menu/continue_" to="." method="_on_continue__pressed"]
+[connection signal="pressed" from="pause_menu/configurations" to="." method="_on_configurations_pressed"]
+[connection signal="toggled" from="pause_menu/configurations" to="." method="_on_configurations_toggled"]
+[connection signal="pressed" from="pause_menu/main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="pause_menu/exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="pause_menu/exit" to="." method="_on_main_menu_pressed"]

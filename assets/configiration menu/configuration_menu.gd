@@ -1,6 +1,7 @@
 extends Control
 
-
+func _ready():
+	pass
 
 var redy_next_input = false
 func _input(event):

@@ -38,7 +38,6 @@ func select_menu_type():
 		main_menu_on(false)
 		start_menu_on(false)
 		configuration_menu_on(true)
-		$start_menu/continue_.grab_focus()
 	
 
 func _ready():

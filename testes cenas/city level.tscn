@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://gt75hoibpm27"]
+[gd_scene load_steps=9 format=3 uid="uid://gt75hoibpm27"]
 
 [ext_resource type="Shader" path="res://shaders/city level sky.gdshader" id="1_gtav3"]
 [ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="1_hmnjv"]
 [ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="3_ycf6e"]
+[ext_resource type="PackedScene" uid="uid://cd6fpwl5rd5jw" path="res://assets/reset_position_triger/reset_position_triger.tscn" id="4_5ej0h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vd4yi"]
 shader = ExtResource("1_gtav3")
@@ -32,3 +33,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1
 
 [node name="Player" parent="." instance=ExtResource("3_ycf6e")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -23.8493, 1.56635, -1.88971)
+
+[node name="ResetPositionTriger" parent="." instance=ExtResource("4_5ej0h")]
+transform = Transform3D(128, 0, 0, 0, 9.14, 0, 0, 0, 232.295, -103.898, -10.4652, 0.594251)

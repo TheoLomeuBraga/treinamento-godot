@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd6fpwl5rd5jw"]
+
+[ext_resource type="Script" path="res://assets/reset_position_triger/reset_position_triger.gd" id="1_ah8c2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_68sub"]
+
+[node name="ResetPositionTriger" type="Area3D"]
+script = ExtResource("1_ah8c2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_68sub")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

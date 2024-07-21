@@ -12,9 +12,18 @@ func pause():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
 
+var last_safe_position = Vector3.ZERO
+
+func go_last_safe_pos():
+	position = last_safe_position
+	
+func set_last_safe_pos():
+	last_safe_position = position
+
 func _ready():
 	remove_child($PauseMenu)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	set_last_safe_pos()
 
 
 @export var jump_power = 12.0
@@ -68,7 +77,8 @@ func make_display_model_look(movement_direction,camera_direction):
 		var target_position = display_model.global_transform.origin + movement_direction
 		if display_model.global_transform.origin != target_position:
 			display_model.look_at(target_position, Vector3.UP)
-	
+
+
 
 func move(delta):
 	var move_input := Vector3.ZERO
@@ -94,6 +104,7 @@ func move(delta):
 	
 	var hit_floor = $ShapeCast3Dfloor.is_colliding()
 	if hit_floor:
+		
 		jump_current_power = 0
 		$ShapeCast3Dceling.enabled = true
 			

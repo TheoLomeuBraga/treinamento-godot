@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmt0vrjojotty"]
+
+[ext_resource type="Script" path="res://assets/chekinpoint/chekinpoint.gd" id="1_2d8pb"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0uchp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2kxjk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fukqh"]
+transparency = 1
+shading_mode = 2
+albedo_color = Color(0.45098, 0, 1, 0.560784)
+
+[node name="Chekinpoint" type="Area3D"]
+transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 1.844, 0)
+script = ExtResource("1_2d8pb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_0uchp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_2kxjk")
+surface_material_override/0 = SubResource("StandardMaterial3D_fukqh")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

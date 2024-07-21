@@ -25,10 +25,22 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_last_safe_pos()
 
-
+@export var wall_jump_power = 12.0
+@export var wall_jumps_per_jump = 1
+var wall_jumps_remaining = 1
 @export var jump_power = 12.0
 @export var gravity = 9.8
 var jump_current_power = 0.0
+
+@export var air_reduction_speed = 100.0
+var extra_air_speed = Vector3.ZERO
+func process_air_speed(delta):
+	if extra_air_speed.length() > 0:
+		var reduction = air_reduction_speed * delta
+		if extra_air_speed.length() <= reduction:
+			extra_air_speed = Vector3.ZERO
+		else:
+			extra_air_speed -= extra_air_speed.normalized() * reduction
 
 var mouse_movement = Vector2.ZERO
 func _input(event):
@@ -97,32 +109,54 @@ func move(delta):
 	else:
 		velocity = normalized_direction * 1200.0 * delta
 	
-	var wall_raycast = $displayModel/wallRaycast
+	
 	
 	
 	make_display_model_look(movement_direction,-forward_direction.normalized())
 	
 	var hit_floor = $ShapeCast3Dfloor.is_colliding()
-	if hit_floor:
+	if hit_floor and jump_current_power <= 0:
+		extra_air_speed = Vector3.ZERO
 		
 		jump_current_power = 0
+		wall_jumps_remaining = wall_jumps_per_jump
 		$ShapeCast3Dceling.enabled = true
 			
-		if Input.get_action_strength("jump") > 0.0:
+		if Input.is_action_just_pressed("jump"):
 			jump_current_power = jump_power * 100
 			$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
 			$AudioStreamPlayer.play()
 	
 	
+	var wall_raycast = $displayModel/wallRaycast
+	if !hit_floor and Input.is_action_just_pressed("jump") and wall_raycast.is_colliding() and wall_jumps_remaining > 0:
+		wall_jumps_remaining -= 1
+		jump_current_power = jump_power * 100
+		
+		var negative_normal = forward_direction.normalized()
+		extra_air_speed.x += negative_normal.x * 40
+		extra_air_speed.z += negative_normal.z * 40
+		
+		$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
+		$AudioStreamPlayer.play()
+
+	
 	if $ShapeCast3Dceling.is_colliding():
 		$ShapeCast3Dceling.enabled = false
 		jump_current_power = 0
+		
+		
+	
 	
 	if jump_current_power != 0:
-		velocity.y = jump_current_power * delta
+		velocity.y = gravity +  jump_current_power * delta
 		
+	
+	velocity += extra_air_speed
+	
 	move_and_slide()
 	
+	process_air_speed(delta)
 	jump_current_power -= delta * (gravity * 100)
 	
 	

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://gt75hoibpm27"]
+[gd_scene load_steps=12 format=3 uid="uid://gt75hoibpm27"]
 
 [ext_resource type="Shader" path="res://shaders/city level sky.gdshader" id="1_gtav3"]
 [ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="1_hmnjv"]
 [ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="3_ycf6e"]
 [ext_resource type="PackedScene" uid="uid://cd6fpwl5rd5jw" path="res://assets/reset_position_triger/reset_position_triger.tscn" id="4_5ej0h"]
+[ext_resource type="PackedScene" uid="uid://dmt0vrjojotty" path="res://assets/chekinpoint/chekinpoint.tscn" id="5_ovtph"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vd4yi"]
 shader = ExtResource("1_gtav3")
@@ -22,6 +23,11 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hhki4"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_n1kbs"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gxrux"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
 [node name="CityLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -33,6 +39,20 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1
 
 [node name="Player" parent="." instance=ExtResource("3_ycf6e")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -23.8493, 1.56635, -1.88971)
+wall_jump_power = 4.0
+jump_power = 2.0
 
 [node name="ResetPositionTriger" parent="." instance=ExtResource("4_5ej0h")]
 transform = Transform3D(128, 0, 0, 0, 9.14, 0, 0, 0, 232.295, -103.898, -10.4652, 0.594251)
+
+[node name="Chekinpoint" parent="." instance=ExtResource("5_ovtph")]
+transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -23.5652, 2.06635, -1.41814)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 1.92691, 0, -0.258819, 7.19132, -22.6478, 0.792837, 9.1101)
+mesh = SubResource("BoxMesh_n1kbs")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_gxrux")

@@ -2,10 +2,10 @@ extends Control
 
 func _ready():
 	Global.load_config()
-	$TabContainer/controls/VBoxContainer/mouse_sensitivity.value = Global.variables["mouse_sensitivity"]
-	$TabContainer/controls/VBoxContainer/joystick_sensitivity.value = Global.variables["joystick_sensitivity"]
-	$TabContainer/video/VBoxContainer/full_screen.button_pressed = Global.variables["full_screen"]
-	$TabContainer/audio/VBoxContainer/volume.value = Global.variables["volume"]
+	$TabContainer/controls/mouse_sensitivity.value = Global.variables["mouse_sensitivity"]
+	$TabContainer/controls/joystick_sensitivity.value = Global.variables["joystick_sensitivity"]
+	$TabContainer/video/full_screen.button_pressed = Global.variables["full_screen"]
+	$TabContainer/audio/volume.value = Global.variables["volume"]
 	
 
 var redy_next_input = false
@@ -27,15 +27,15 @@ func _input(event):
 var next_tab = 0
 func _process(delta):
 	if next_tab == 0:
-		$TabContainer/video/VBoxContainer/full_screen.grab_focus()
+		$TabContainer/video/full_screen.grab_focus()
 		next_tab = -1
 		
 	elif next_tab == 1:
-		$TabContainer/audio/VBoxContainer/volume.grab_focus()
+		$TabContainer/audio/volume.grab_focus()
 		next_tab = -1
 		
 	elif next_tab == 2:
-		$TabContainer/controls/VBoxContainer/mouse_sensitivity.grab_focus()
+		$TabContainer/controls/mouse_sensitivity.grab_focus()
 		next_tab = -1
 		
 

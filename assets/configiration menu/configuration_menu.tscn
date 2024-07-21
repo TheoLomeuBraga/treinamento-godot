@@ -102,6 +102,35 @@ offset_bottom = 111.0
 max_value = 50.0
 value = 12.0
 
+[node name="language" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="language" type="Label" parent="TabContainer/language"]
+layout_mode = 2
+offset_left = 350.0
+offset_top = 15.0
+offset_right = 485.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "language
+"
+
+[node name="OptionButton" type="OptionButton" parent="TabContainer/language"]
+layout_mode = 0
+offset_left = 641.0
+offset_top = 15.0
+offset_right = 815.0
+offset_bottom = 50.0
+item_count = 2
+selected = 0
+popup/item_0/text = "english"
+popup/item_0/id = 0
+popup/item_1/text = "portugues"
+popup/item_1/id = 1
+
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="tab_selected" from="TabContainer" to="." method="_on_tab_container_tab_selected"]
 [connection signal="tab_selected" from="TabContainer/video" to="." method="_on_video_tab_selected"]

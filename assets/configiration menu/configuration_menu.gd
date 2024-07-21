@@ -6,7 +6,7 @@ func _ready():
 	$TabContainer/controls/joystick_sensitivity.value = Global.variables["joystick_sensitivity"]
 	$TabContainer/video/full_screen.button_pressed = Global.variables["full_screen"]
 	$TabContainer/audio/volume.value = Global.variables["volume"]
-	
+	#$TabContainer/language/OptionButton
 
 var redy_next_input = false
 func _input(event):
@@ -37,6 +37,10 @@ func _process(delta):
 	elif next_tab == 2:
 		$TabContainer/controls/mouse_sensitivity.grab_focus()
 		next_tab = -1
+	elif next_tab == 3:
+		$TabContainer/language/OptionButton.grab_focus()
+		next_tab = -1
+		
 		
 
 func _on_tab_container_tab_selected(tab):

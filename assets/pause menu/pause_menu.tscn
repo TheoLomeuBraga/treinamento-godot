@@ -49,5 +49,5 @@ text = "exit
 [connection signal="pressed" from="pause_menu/configurations" to="." method="_on_configurations_pressed"]
 [connection signal="toggled" from="pause_menu/configurations" to="." method="_on_configurations_toggled"]
 [connection signal="pressed" from="pause_menu/main_menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="pause_menu/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="pause_menu/exit" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="pause_menu/exit" to="." method="_on_exit_pressed"]

@@ -9,7 +9,8 @@ const variables_defout = {"mouse_sensitivity": 12.0,
 var variables = {"mouse_sensitivity": 12.0,
 "joystick_sensitivity": 12.0,
 "full_screen": false,
-"volume": 0
+"volume": 0,
+"pause": false
 }
 
 const config_save_path_folder = "user://my_plataformer_test_game"

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk8n7jxmpt2os"]
+[gd_scene load_steps=4 format=3 uid="uid://bk8n7jxmpt2os"]
 
 [ext_resource type="Script" path="res://assets/main_menu/menus.gd" id="1_0e51p"]
+[ext_resource type="Theme" uid="uid://dp1hrate7dwva" path="res://styles/ui_cyberpunck_style.tres" id="1_2ltkq"]
 [ext_resource type="PackedScene" uid="uid://dovgwxs8h0x35" path="res://assets/configiration menu/configuration_menu.tscn" id="2_l55so"]
 
 [node name="Menus" type="Control"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_2ltkq")
 script = ExtResource("1_0e51p")
 
 [node name="main_menu" type="VBoxContainer" parent="."]

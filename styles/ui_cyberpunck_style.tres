@@ -1,0 +1,53 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dp1hrate7dwva"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5rot"]
+bg_color = Color(0.984314, 0, 0.913725, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0392157, 0.168627, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_owh46"]
+bg_color = Color(0.517647, 0, 0.482353, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0392157, 0.168627, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5k0f4"]
+bg_color = Color(0.518843, 0.000108487, 0.481022, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbgma"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5m64w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xssld"]
+bg_color = Color(0.160282, 0.0973938, 0.183688, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_io0kg"]
+bg_color = Color(0, 0.160784, 0.647059, 1)
+border_width_top = 5
+border_color = Color(0.698039, 0.137255, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8w4ck"]
+bg_color = Color(0.160784, 0.0980392, 0.184314, 1)
+border_width_top = 5
+border_color = Color(0.698039, 0.137255, 0.713726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tob64"]
+bg_color = Color(0.00137052, 0.159285, 0.645392, 1)
+border_color = Color(0.698039, 0.137255, 0.713726, 1)
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxFlat_l5rot")
+Button/styles/hover = SubResource("StyleBoxFlat_owh46")
+Button/styles/normal = SubResource("StyleBoxFlat_5k0f4")
+CheckBox/styles/focus = SubResource("StyleBoxFlat_bbgma")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_5m64w")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_xssld")
+TabContainer/styles/tab_hovered = SubResource("StyleBoxFlat_io0kg")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_8w4ck")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_tob64")

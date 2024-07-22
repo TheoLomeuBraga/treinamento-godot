@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://k234ra6vkxn6"]
+[gd_scene load_steps=3 format=3 uid="uid://k234ra6vkxn6"]
 
+[ext_resource type="Theme" uid="uid://dp1hrate7dwva" path="res://styles/ui_cyberpunck_style.tres" id="1_pthxo"]
 [ext_resource type="Script" path="res://assets/pause menu/pause_menu.gd" id="1_ugrv4"]
 
 [node name="PauseMenu" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_pthxo")
 script = ExtResource("1_ugrv4")
 
 [node name="pause_menu" type="VBoxContainer" parent="."]
@@ -49,5 +51,5 @@ text = "MENU_EXIT
 [connection signal="pressed" from="pause_menu/configurations" to="." method="_on_configurations_pressed"]
 [connection signal="toggled" from="pause_menu/configurations" to="." method="_on_configurations_toggled"]
 [connection signal="pressed" from="pause_menu/main_menu" to="." method="_on_main_menu_pressed"]
-[connection signal="pressed" from="pause_menu/exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="pause_menu/exit" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="pause_menu/exit" to="." method="_on_exit_pressed"]

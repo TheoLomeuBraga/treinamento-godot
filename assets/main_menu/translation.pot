@@ -1,0 +1,63 @@
+# LANGUAGE translation for treinamento godot for the following files:
+# res://assets/main_menu/main_menu.tscn
+# res://assets/pause menu/pause_menu.tscn
+# res://assets/configiration menu/configuration_menu.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: treinamento godot\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: assets/main_menu/main_menu.tscn
+msgid "MENU_PLAY\n"
+msgstr ""
+
+#: assets/main_menu/main_menu.tscn
+#: assets/pause menu/pause_menu.tscn
+msgid "MENU_CONTINUE\n"
+msgstr ""
+
+#: assets/main_menu/main_menu.tscn
+msgid "MENU_NEW_GAME\n"
+msgstr ""
+
+#: assets/main_menu/main_menu.tscn
+#: assets/pause menu/pause_menu.tscn
+msgid "MENU_CONFIGURATIONS\n"
+msgstr ""
+
+#: assets/main_menu/main_menu.tscn
+#: assets/pause menu/pause_menu.tscn
+msgid "MENU_EXIT\n"
+msgstr ""
+
+#: assets/pause menu/pause_menu.tscn
+msgid "MENU_MAIN_MENU\n"
+msgstr ""
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_FULL_SCREEN\n"
+msgstr ""
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_VOLUME"
+msgstr ""
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_MOUSE_SENSITIVITY"
+msgstr ""
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_JOYSTICK_SENSITYVITY"
+msgstr ""
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_LANGUAGE\n"
+msgstr ""
+
+

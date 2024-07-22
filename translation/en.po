@@ -1,0 +1,81 @@
+# LANGUAGE translation for treinamento godot for the following files:
+# res://assets/configiration menu/configuration_menu.tscn
+# res://assets/main_menu/main_menu.tscn
+# res://assets/pause menu/pause_menu.tscn
+# res://assets/configiration menu/configuration_menu.gd
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: treinamento godot\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.4\n"
+
+#: assets/configiration menu/configuration_menu.tscn menu/configuration_menu.gd
+msgid "MENU_TAB_VIDEO"
+msgstr "video"
+
+#: assets/configiration menu/configuration_menu.tscn menu/configuration_menu.gd
+msgid "MENU_TAB_AUDIO"
+msgstr "audio"
+
+#: assets/configiration menu/configuration_menu.tscn menu/configuration_menu.gd
+msgid "MENU_TAB_CONTROLS"
+msgstr "controls"
+
+#: assets/configiration menu/configuration_menu.tscn menu/configuration_menu.gd
+msgid "MENU_TAB_LANGUAGE"
+msgstr "language"
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_FULL_SCREEN\n"
+msgstr "full screen\n"
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_VOLUME"
+msgstr "volume"
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_MOUSE_SENSITIVITY"
+msgstr "mouse sensitivity"
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_JOYSTICK_SENSITYVITY"
+msgstr "joystick sensitivity"
+
+#: assets/configiration menu/configuration_menu.tscn
+msgid "MENU_LANGUAGE\n"
+msgstr "language\n"
+
+#: assets/main_menu/main_menu.tscn
+msgid "MENU_PLAY\n"
+msgstr "play\n"
+
+#: assets/main_menu/main_menu.tscn assets/pause menu/pause_menu.tscn
+msgid "MENU_CONTINUE\n"
+msgstr "continue\n"
+
+#: assets/main_menu/main_menu.tscn
+msgid "MENU_NEW_GAME\n"
+msgstr "new game\n"
+
+#: assets/main_menu/main_menu.tscn assets/pause menu/pause_menu.tscn
+msgid "MENU_CONFIGURATIONS\n"
+msgstr "setings\n"
+
+#: assets/main_menu/main_menu.tscn assets/pause menu/pause_menu.tscn
+msgid "MENU_EXIT\n"
+msgstr "exit\n"
+
+#: assets/pause menu/pause_menu.tscn
+msgid "MENU_MAIN_MENU\n"
+msgstr "main menu\n"

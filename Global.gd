@@ -3,14 +3,17 @@ extends Node
 const variables_defout = {"mouse_sensitivity": 12.0,
 "joystick_sensitivity": 12.0,
 "full_screen": false,
-"volume": 0
+"volume": 0,
+"language": 0
 }
 
 var variables = {"mouse_sensitivity": 12.0,
 "joystick_sensitivity": 12.0,
 "full_screen": false,
 "volume": 0,
+"language": 0,
 "pause": false
+
 }
 
 const config_save_path_folder = "user://my_plataformer_test_game"
@@ -24,8 +27,9 @@ func save_config():
 		file.store_var(1)
 	else:
 		file.store_var(0)
+	file.store_var(0)
 		
-	file.store_var(variables["volume"])
+	file.store_var(variables["language"])
 	
 	print("save",variables)
 	
@@ -36,12 +40,14 @@ func load_config():
 		var joystick_sensitivity = file.get_var()
 		var full_screen  = file.get_var()
 		var volume = file.get_var()
+		var language = file.get_var()
 		
-		if mouse_sensitivity != null and joystick_sensitivity != null and full_screen != null and volume != null:
+		if mouse_sensitivity != null and joystick_sensitivity != null and full_screen != null and volume != null and language != null:
 			variables["mouse_sensitivity"] = mouse_sensitivity
 			variables["joystick_sensitivity"] = joystick_sensitivity
 			variables["full_screen"] = full_screen
 			variables["volume"] = volume
+			variables["language"] = language
 			print("load",variables)
 		else:
 			print("load error")

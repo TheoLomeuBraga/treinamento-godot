@@ -20,10 +20,10 @@ grow_horizontal = 2
 grow_vertical = 2
 tab_alignment = 1
 
-[node name="video" type="TabBar" parent="TabContainer"]
+[node name="MENU_TAB_VIDEO" type="TabBar" parent="TabContainer"]
 layout_mode = 2
 
-[node name="full_screen" type="CheckButton" parent="TabContainer/video"]
+[node name="full_screen" type="CheckButton" parent="TabContainer/MENU_TAB_VIDEO"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -32,23 +32,23 @@ offset_left = -64.5
 offset_right = 64.5
 offset_bottom = 31.0
 grow_horizontal = 2
-text = "full screen
+text = "MENU_FULL_SCREEN
 "
 
-[node name="audio" type="TabBar" parent="TabContainer"]
+[node name="MENU_TAB_AUDIO" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="volume2" type="Label" parent="TabContainer/audio"]
+[node name="volume2" type="Label" parent="TabContainer/MENU_TAB_AUDIO"]
 layout_mode = 2
 offset_left = 414.0
 offset_top = 15.0
 offset_right = 472.0
 offset_bottom = 38.0
 size_flags_horizontal = 0
-text = "volume"
+text = "MENU_VOLUME"
 
-[node name="volume" type="HSlider" parent="TabContainer/audio"]
+[node name="volume" type="HSlider" parent="TabContainer/MENU_TAB_AUDIO"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -62,20 +62,20 @@ size_flags_horizontal = 4
 min_value = -80.0
 max_value = 0.0
 
-[node name="controls" type="TabBar" parent="TabContainer"]
+[node name="MENU_TAB_CONTROLS" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="mouse sensitivity" type="Label" parent="TabContainer/controls"]
+[node name="mouse sensitivity" type="Label" parent="TabContainer/MENU_TAB_CONTROLS"]
 layout_mode = 2
 offset_left = 350.0
 offset_top = 15.0
 offset_right = 485.0
 offset_bottom = 38.0
 size_flags_horizontal = 4
-text = "mouse sensitivity"
+text = "MENU_MOUSE_SENSITIVITY"
 
-[node name="mouse_sensitivity" type="HSlider" parent="TabContainer/controls"]
+[node name="mouse_sensitivity" type="HSlider" parent="TabContainer/MENU_TAB_CONTROLS"]
 layout_mode = 2
 offset_left = 613.0
 offset_top = 15.0
@@ -84,16 +84,16 @@ offset_bottom = 31.0
 max_value = 50.0
 value = 12.0
 
-[node name="joystick sensitivity" type="Label" parent="TabContainer/controls"]
+[node name="joystick sensitivity" type="Label" parent="TabContainer/MENU_TAB_CONTROLS"]
 layout_mode = 2
 offset_left = 350.0
 offset_top = 95.0
 offset_right = 491.0
 offset_bottom = 118.0
 size_flags_horizontal = 4
-text = "joystick sensitivity"
+text = "MENU_JOYSTICK_SENSITYVITY"
 
-[node name="joystick_sensitivity" type="HSlider" parent="TabContainer/controls"]
+[node name="joystick_sensitivity" type="HSlider" parent="TabContainer/MENU_TAB_CONTROLS"]
 layout_mode = 2
 offset_left = 619.0
 offset_top = 95.0
@@ -102,11 +102,11 @@ offset_bottom = 111.0
 max_value = 50.0
 value = 12.0
 
-[node name="language" type="TabBar" parent="TabContainer"]
+[node name="MENU_TAB_LANGUAGE" type="TabBar" parent="TabContainer"]
 visible = false
 layout_mode = 2
 
-[node name="language" type="Label" parent="TabContainer/language"]
+[node name="language" type="Label" parent="TabContainer/MENU_TAB_LANGUAGE"]
 layout_mode = 2
 offset_left = 350.0
 offset_top = 15.0
@@ -115,10 +115,10 @@ offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-text = "language
+text = "MENU_LANGUAGE
 "
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/language"]
+[node name="OptionButton" type="OptionButton" parent="TabContainer/MENU_TAB_LANGUAGE"]
 layout_mode = 0
 offset_left = 641.0
 offset_top = 15.0
@@ -133,11 +133,12 @@ popup/item_1/id = 1
 
 [connection signal="tab_changed" from="TabContainer" to="." method="_on_tab_container_tab_changed"]
 [connection signal="tab_selected" from="TabContainer" to="." method="_on_tab_container_tab_selected"]
-[connection signal="tab_selected" from="TabContainer/video" to="." method="_on_video_tab_selected"]
-[connection signal="toggled" from="TabContainer/video/full_screen" to="." method="_on_full_screen_toggled"]
-[connection signal="drag_ended" from="TabContainer/audio/volume" to="." method="_on_volume_drag_ended"]
-[connection signal="value_changed" from="TabContainer/audio/volume" to="." method="_on_volume_value_changed"]
-[connection signal="drag_ended" from="TabContainer/controls/mouse_sensitivity" to="." method="_on_mouse_sensitivity_drag_ended"]
-[connection signal="value_changed" from="TabContainer/controls/mouse_sensitivity" to="." method="_on_mouse_sensitivity_value_changed"]
-[connection signal="drag_ended" from="TabContainer/controls/joystick_sensitivity" to="." method="_on_joystick_sensitivity_drag_ended"]
-[connection signal="value_changed" from="TabContainer/controls/joystick_sensitivity" to="." method="_on_joystick_sensitivity_value_changed"]
+[connection signal="tab_selected" from="TabContainer/MENU_TAB_VIDEO" to="." method="_on_video_tab_selected"]
+[connection signal="toggled" from="TabContainer/MENU_TAB_VIDEO/full_screen" to="." method="_on_full_screen_toggled"]
+[connection signal="drag_ended" from="TabContainer/MENU_TAB_AUDIO/volume" to="." method="_on_volume_drag_ended"]
+[connection signal="value_changed" from="TabContainer/MENU_TAB_AUDIO/volume" to="." method="_on_volume_value_changed"]
+[connection signal="drag_ended" from="TabContainer/MENU_TAB_CONTROLS/mouse_sensitivity" to="." method="_on_mouse_sensitivity_drag_ended"]
+[connection signal="value_changed" from="TabContainer/MENU_TAB_CONTROLS/mouse_sensitivity" to="." method="_on_mouse_sensitivity_value_changed"]
+[connection signal="drag_ended" from="TabContainer/MENU_TAB_CONTROLS/joystick_sensitivity" to="." method="_on_joystick_sensitivity_drag_ended"]
+[connection signal="value_changed" from="TabContainer/MENU_TAB_CONTROLS/joystick_sensitivity" to="." method="_on_joystick_sensitivity_value_changed"]
+[connection signal="item_selected" from="TabContainer/MENU_TAB_LANGUAGE/OptionButton" to="." method="_on_option_button_item_selected"]

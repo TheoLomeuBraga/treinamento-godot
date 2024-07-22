@@ -28,7 +28,7 @@ grow_vertical = 2
 
 [node name="play" type="Button" parent="main_menu"]
 layout_mode = 2
-text = "play
+text = "MENU_PLAY
 "
 
 [node name="start_menu" type="VBoxContainer" parent="."]
@@ -47,22 +47,22 @@ grow_vertical = 2
 
 [node name="continue_" type="Button" parent="start_menu"]
 layout_mode = 2
-text = "continue
+text = "MENU_CONTINUE
 "
 
 [node name="new_game" type="Button" parent="start_menu"]
 layout_mode = 2
-text = "new game
+text = "MENU_NEW_GAME
 "
 
 [node name="configurations" type="Button" parent="start_menu"]
 layout_mode = 2
-text = "configurations
+text = "MENU_CONFIGURATIONS
 "
 
 [node name="exit" type="Button" parent="start_menu"]
 layout_mode = 2
-text = "exit
+text = "MENU_EXIT
 "
 
 [node name="configuration_menu" parent="." instance=ExtResource("2_l55so")]

@@ -1,12 +1,24 @@
 extends Control
 
+func set_language(index):
+	Global.variables["language"] = index
+	if index == 0:
+		TranslationServer.set_locale("en")
+	elif index == 1:
+		TranslationServer.set_locale("pt_BR")
+
 func _ready():
 	Global.load_config()
-	$TabContainer/controls/mouse_sensitivity.value = Global.variables["mouse_sensitivity"]
-	$TabContainer/controls/joystick_sensitivity.value = Global.variables["joystick_sensitivity"]
-	$TabContainer/video/full_screen.button_pressed = Global.variables["full_screen"]
-	$TabContainer/audio/volume.value = Global.variables["volume"]
-	#$TabContainer/language/OptionButton
+	$TabContainer/MENU_TAB_CONTROLS/mouse_sensitivity.value = Global.variables["mouse_sensitivity"]
+	$TabContainer/MENU_TAB_CONTROLS/joystick_sensitivity.value = Global.variables["joystick_sensitivity"]
+	$TabContainer/MENU_TAB_VIDEO/full_screen.button_pressed = Global.variables["full_screen"]
+	$TabContainer/MENU_TAB_AUDIO/volume.value = Global.variables["volume"]
+	$TabContainer/MENU_TAB_LANGUAGE/OptionButton.select(Global.variables["language"])
+	
+	$TabContainer.set_tab_title(0,tr("MENU_TAB_VIDEO"))
+	$TabContainer.set_tab_title(1,tr("MENU_TAB_AUDIO"))
+	$TabContainer.set_tab_title(2,tr("MENU_TAB_CONTROLS"))
+	$TabContainer.set_tab_title(3,tr("MENU_TAB_LANGUAGE"))
 
 var redy_next_input = false
 func _input(event):
@@ -27,18 +39,18 @@ func _input(event):
 var next_tab = 0
 func _process(delta):
 	if next_tab == 0:
-		$TabContainer/video/full_screen.grab_focus()
+		$TabContainer/MENU_TAB_VIDEO/full_screen.grab_focus()
 		next_tab = -1
 		
 	elif next_tab == 1:
-		$TabContainer/audio/volume.grab_focus()
+		$TabContainer/MENU_TAB_AUDIO/volume.grab_focus()
 		next_tab = -1
 		
 	elif next_tab == 2:
-		$TabContainer/controls/mouse_sensitivity.grab_focus()
+		$TabContainer/MENU_TAB_CONTROLS/mouse_sensitivity.grab_focus()
 		next_tab = -1
 	elif next_tab == 3:
-		$TabContainer/language/OptionButton.grab_focus()
+		$TabContainer/MENU_TAB_LANGUAGE/OptionButton.grab_focus()
 		next_tab = -1
 		
 		
@@ -73,3 +85,9 @@ func _on_joystick_sensitivity_value_changed(value):
 
 
 
+func _on_option_button_item_selected(index):
+	set_language(index)
+	
+	
+	
+	

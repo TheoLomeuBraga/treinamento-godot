@@ -70,8 +70,10 @@ func look_around(delta):
 	rootY.rotation.y = deg_to_rad(rot_degres.y)
 	
 
+#speed
 @export var aim_mode = false
-func make_display_model_look(movement_direction,camera_direction):
+@export var turn_speed = 10.0
+func make_display_model_look(movement_direction,camera_direction,delta):
 	var display_model = $displayModel
 	
 	if aim_mode:
@@ -80,7 +82,15 @@ func make_display_model_look(movement_direction,camera_direction):
 	else:
 		var target_position = display_model.global_transform.origin + movement_direction
 		if display_model.global_transform.origin != target_position:
-			display_model.look_at(target_position, Vector3.UP)
+			var direction = (target_position - display_model.global_transform.origin).normalized()
+			var target_rotation = display_model.global_transform.basis.get_rotation_quaternion()
+			var current_rotation = display_model.global_transform.basis.get_rotation_quaternion()
+
+			var target_look_at = Basis().looking_at(direction, Vector3.UP).get_rotation_quaternion()
+			var new_rotation = current_rotation.slerp(target_look_at, turn_speed * delta)
+
+			display_model.global_transform.basis = Basis(new_rotation)
+
 
 
 var jumping = false
@@ -121,7 +131,7 @@ func move(delta):
 		
 	
 	if !jumping:
-		make_display_model_look(movement_direction,-forward_direction.normalized())
+		make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
 	
 	
 	if hit_floor and jump_current_power <= 0:

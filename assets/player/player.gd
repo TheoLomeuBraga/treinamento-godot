@@ -130,14 +130,14 @@ func move(delta):
 	var wall_raycast = $displayModel/wallRaycast
 	if !hit_floor and Input.is_action_just_pressed("jump") and wall_raycast.is_colliding() and wall_jumps_remaining > 0:
 		wall_jumps_remaining -= 1
-		jump_current_power = gravity * jump_power * 100
+		jumping = true
+		jump_current_power = jump_power * 100
+		$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
+		$AudioStreamPlayer.play()
 		
 		var negative_normal = forward_direction.normalized()
 		extra_air_speed.x += negative_normal.x * 40
 		extra_air_speed.z += negative_normal.z * 40
-		
-		$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
-		$AudioStreamPlayer.play()
 
 	
 	if $ShapeCast3Dceling.is_colliding():

@@ -49,7 +49,7 @@ transform = Transform3D(128, 0, 0, 0, 9.14, 0, 0, 0, 232.295, -103.898, -10.4652
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -23.5652, 2.06635, -1.41814)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 1.92691, 0, -0.258819, 7.19132, -22.6478, 0.792837, 9.1101)
+transform = Transform3D(5.015, 0, 0, 0, 0.965926, 1.92691, 0, -0.258819, 7.19132, -22.6478, 0.792837, 9.1101)
 mesh = SubResource("BoxMesh_n1kbs")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]

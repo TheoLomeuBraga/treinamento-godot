@@ -33,15 +33,6 @@ var wall_jumps_remaining = 1
 @export var speed = 12.0
 var jump_current_power = 0.0
 
-@export var air_reduction_speed = 100.0
-var extra_air_speed = Vector3.ZERO
-func process_air_speed(delta):
-	if extra_air_speed.length() > 0:
-		var reduction = air_reduction_speed * delta
-		if extra_air_speed.length() <= reduction:
-			extra_air_speed = Vector3.ZERO
-		else:
-			extra_air_speed -= extra_air_speed.normalized() * reduction
 
 var mouse_movement = Vector2.ZERO
 func _input(event):
@@ -93,6 +84,10 @@ func make_display_model_look(movement_direction,camera_direction):
 
 
 var jumping = false
+var hit_floor = false
+var floor_last_direction = Vector3.ZERO
+@export var air_ajust_speed = 0.5
+
 func move(delta):
 	var move_input := Vector3.ZERO
 	move_input.x = Input.get_axis("left","right")
@@ -104,17 +99,33 @@ func move(delta):
 	var right_direction = camera_root.global_transform.basis.x.normalized()
 	var movement_direction = (forward_direction * move_input.z + right_direction * move_input.x)
 	
-	if $RayCast3D.is_colliding() and movement_direction.x != 0 and movement_direction.z != 0:
-		velocity = $RayCast3D.get_collision_normal().direction_to(movement_direction) * speed  * 100.0 * delta
+	hit_floor = $ShapeCast3Dfloor.is_colliding()
+	
+	if hit_floor:
+		if $RayCast3D.is_colliding() and movement_direction.x != 0 and movement_direction.z != 0:
+			floor_last_direction = $RayCast3D.get_collision_normal().direction_to(movement_direction)
+			velocity = floor_last_direction * speed  * 100.0 * delta
+		else:
+			floor_last_direction = movement_direction
+			velocity = floor_last_direction * speed  * 100.0 * delta
 	else:
-		velocity = movement_direction * 1200.0 * delta
+		if air_ajust_speed > 0:
+			velocity = floor_last_direction * speed  * 100.0 * delta
+			floor_last_direction += movement_direction * (air_ajust_speed * delta)
+			
+			if (abs(floor_last_direction.x) + abs(floor_last_direction.z)) > 1.0:
+				floor_last_direction = floor_last_direction.normalized()
+				
+		else:
+			velocity = floor_last_direction * speed  * 100.0 * delta
+		
 	
-	make_display_model_look(movement_direction,-forward_direction.normalized())
+	if !jumping:
+		make_display_model_look(movement_direction,-forward_direction.normalized())
 	
-	var hit_floor = $ShapeCast3Dfloor.is_colliding()
+	
 	if hit_floor and jump_current_power <= 0:
 		jumping = false
-		extra_air_speed = Vector3.ZERO
 		velocity.y = 0
 		jump_current_power = 0
 		wall_jumps_remaining = wall_jumps_per_jump
@@ -127,40 +138,19 @@ func move(delta):
 			$AudioStreamPlayer.play()
 	
 	
-	var wall_raycast = $displayModel/wallRaycast
-	if !hit_floor and Input.is_action_just_pressed("jump") and wall_raycast.is_colliding() and wall_jumps_remaining > 0:
-		wall_jumps_remaining -= 1
-		jumping = true
-		jump_current_power = jump_power * 100
-		$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
-		$AudioStreamPlayer.play()
-		
-		var negative_normal = forward_direction.normalized()
-		extra_air_speed.x += negative_normal.x * 40
-		extra_air_speed.z += negative_normal.z * 40
-
+	
 	
 	if $ShapeCast3Dceling.is_colliding():
 		$ShapeCast3Dceling.enabled = false
 		jump_current_power = 0
-		
-		
 	
 	if jumping:
 		velocity.y = gravity + jump_current_power * delta
 	else:
 		velocity.y = jump_current_power * delta
-	
 		
-		
-		
-	print(velocity.y)
-	velocity += extra_air_speed
-	
 	
 	move_and_slide()
-	
-	process_air_speed(delta)
 	jump_current_power -= delta * (gravity * 100)
 	
 	

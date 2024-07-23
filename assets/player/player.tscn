@@ -56,6 +56,9 @@ target_position = Vector3(0, 0.5, 0)
 
 [node name="cameraRootX" type="Node3D" parent="cameraRootY"]
 
+[node name="gunBarrel" type="Node3D" parent="cameraRootY/cameraRootX"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366787, -1.17638)
+
 [node name="SpringArm3D" type="SpringArm3D" parent="cameraRootY/cameraRootX"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21941, 0.38279)
 spring_length = 4.0
@@ -69,10 +72,6 @@ far = 1000.0
 [node name="AudioListener3D" type="AudioListener3D" parent="cameraRootY/cameraRootX/SpringArm3D/Camera3D"]
 
 [node name="displayModel" type="Node3D" parent="."]
-
-[node name="wallRaycast" type="RayCast3D" parent="displayModel"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.0549091, -0.462478)
-target_position = Vector3(0, -0.3, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="displayModel"]
 mesh = SubResource("CapsuleMesh_y0lr8")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://c5hcg6606rww7"]
 
 [ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="1_kcmgw"]
-[ext_resource type="Material" uid="uid://ij5pff0bgtoh" path="res://sound efects/psx_geometry_standard.tres" id="1_wp6ku"]
+[ext_resource type="Material" uid="uid://ij5pff0bgtoh" path="res://materials/psx_geometry_standard.tres" id="1_wp6ku"]
 
 [sub_resource type="Environment" id="Environment_jng03"]
 background_mode = 1

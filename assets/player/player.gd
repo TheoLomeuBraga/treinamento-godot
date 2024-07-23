@@ -80,17 +80,19 @@ func make_display_model_look(movement_direction,camera_direction,delta):
 		var target_position = display_model.global_transform.origin + camera_direction
 		display_model.look_at(target_position, Vector3.UP)
 	else:
-		var target_position = display_model.global_transform.origin + movement_direction
-		if display_model.global_transform.origin != target_position:
-			var direction = (target_position - display_model.global_transform.origin).normalized()
-			var target_rotation = display_model.global_transform.basis.get_rotation_quaternion()
-			var current_rotation = display_model.global_transform.basis.get_rotation_quaternion()
+		if delta >= 0:
+			var target_position = display_model.global_transform.origin + movement_direction
+			if display_model.global_transform.origin != target_position:
+				var direction = (target_position - display_model.global_transform.origin).normalized()
+				var target_rotation = display_model.global_transform.basis.get_rotation_quaternion()
+				var current_rotation = display_model.global_transform.basis.get_rotation_quaternion()
 
-			var target_look_at = Basis().looking_at(direction, Vector3.UP).get_rotation_quaternion()
-			var new_rotation = current_rotation.slerp(target_look_at, turn_speed * delta)
+				var target_look_at = Basis().looking_at(direction, Vector3.UP).get_rotation_quaternion()
+				var new_rotation = current_rotation.slerp(target_look_at, turn_speed * delta)
 
-			display_model.global_transform.basis = Basis(new_rotation)
-
+				display_model.global_transform.basis = Basis(new_rotation)
+		else:
+			display_model.look_at(display_model.global_transform.origin + movement_direction, Vector3.UP)
 
 
 var jumping = false
@@ -146,6 +148,7 @@ func move(delta):
 			jump_current_power = jump_power * 100
 			$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
 			$AudioStreamPlayer.play()
+			make_display_model_look(movement_direction,-forward_direction.normalized(),-1)
 	
 	
 	

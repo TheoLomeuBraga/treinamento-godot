@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmt0vrjojotty"]
+[gd_scene load_steps=10 format=3 uid="uid://dmt0vrjojotty"]
 
 [ext_resource type="Script" path="res://assets/chekinpoint/chekinpoint.gd" id="1_2d8pb"]
+[ext_resource type="PackedScene" uid="uid://71vcwiewq3cj" path="res://assets/chekinpoint/chekinpoint.glb" id="2_flsgx"]
+[ext_resource type="AudioStream" uid="uid://bgkgxog7n2ogt" path="res://sound efects/chekinpoint.ogg" id="3_61cib"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0uchp"]
 
@@ -11,15 +13,45 @@ transparency = 1
 shading_mode = 2
 albedo_color = Color(0.45098, 0, 1, 0.560784)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa02b"]
+albedo_color = Color(0.407843, 0.407843, 1, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_db2yu"]
+inherit_velocity_ratio = 80.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="SphereMesh" id="SphereMesh_t3xn0"]
+radius = 0.1
+height = 0.2
+
 [node name="Chekinpoint" type="Area3D"]
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 1.844, 0)
 script = ExtResource("1_2d8pb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.015, 0, 0, 0, 1, 0, -0.729308, 0)
 shape = SubResource("CylinderShape3D_0uchp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_2kxjk")
 surface_material_override/0 = SubResource("StandardMaterial3D_fukqh")
+
+[node name="chekinpoint" parent="." instance=ExtResource("2_flsgx")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.922, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_qa02b")
+emitting = false
+amount = 24
+lifetime = 0.5
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_db2yu")
+draw_pass_1 = SubResource("SphereMesh_t3xn0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_61cib")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -52,12 +52,12 @@ target_position = Vector3(0, -2, 0)
 [node name="ShapeCast3Dceling" type="ShapeCast3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.3, 0, 0, 0, 0.8, 0, 0.85, 0)
 shape = SubResource("CylinderShape3D_yggde")
-target_position = Vector3(0, -0.5, 0)
+target_position = Vector3(0, -0.45, 0)
 
 [node name="ShapeCast3Dfloor" type="ShapeCast3D" parent="."]
 transform = Transform3D(0.8, 0, 0, 0, 0.3, 0, 0, 0, 0.8, 0, -0.85, 0)
 shape = SubResource("CylinderShape3D_6x7qe")
-target_position = Vector3(0, 0.5, 0)
+target_position = Vector3(0, 0.45, 0)
 
 [node name="cameraRootY" type="Node3D" parent="."]
 
@@ -67,7 +67,7 @@ target_position = Vector3(0, 0.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.366787, -1.17638)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="cameraRootY/cameraRootX"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21941, 0.38279)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21941, 0.38279)
 spring_length = 4.0
 margin = 0.5
 

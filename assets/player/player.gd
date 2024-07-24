@@ -96,6 +96,7 @@ func make_display_model_look(movement_direction,camera_direction,delta):
 
 
 var jumping = false
+var hit_floor_last_frame = true
 var hit_floor = false
 var floor_last_direction = Vector3.ZERO
 @export var air_ajust_speed = 0.25
@@ -111,7 +112,7 @@ func move(delta):
 	var right_direction = camera_root.global_transform.basis.x.normalized()
 	var movement_direction = (forward_direction * move_input.z + right_direction * move_input.x)
 	
-	hit_floor = $ShapeCast3Dfloor.is_colliding()
+	hit_floor = $ShapeCast3Dfloor.is_colliding() or $RayCast3D.is_colliding()
 	
 	var ledge_contact = $displayModel/ledgeRayZ.is_colliding() and $displayModel/ledgeRayZ/ledgeRayY.is_colliding()
 	var ledge_ray_y_normal = $displayModel/ledgeRayZ.get_collision_normal()
@@ -149,7 +150,6 @@ func move(delta):
 		else:
 			velocity.x = 0
 			velocity.z = 0
-		
 	
 	if hit_floor:
 		make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
@@ -188,14 +188,31 @@ func move(delta):
 		velocity.y = jump_current_power * delta
 		
 	
+	#stick to the floor when falling
+	if hit_floor == true and hit_floor_last_frame == false:
+		position.y -= 0.2
 	
 	move_and_slide()
 	jump_current_power -= delta * (gravity * 100)
+	hit_floor_last_frame = hit_floor
 
 var projectile_asset = preload("res://assets/projectile.tscn")
 
+@export var fire_rate : float = 1
+var timer_next_shor : float = 0.1
+
 func shoot(delta):
-	pass
+	
+	if hit_floor and timer_next_shor <= 0 and Input.get_action_strength("shoot"):
+		timer_next_shor = fire_rate
+		
+		var projectile : Node3D = projectile_asset.instantiate()
+		get_tree().get_root().add_child(projectile)
+		projectile.global_position = $cameraRootY/cameraRootX/gunBarrel.global_position
+		projectile.global_rotation = $cameraRootY/cameraRootX/gunBarrel.global_rotation
+		aim_mode = true
+		
+	timer_next_shor -= delta
 
 func _process(delta):
 	if !Global.variables["pause"]:

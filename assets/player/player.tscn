@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=14 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://k234ra6vkxn6" path="res://assets/pause menu/pause_menu.tscn" id="4_nebhs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppes8"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kf8x2"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yggde"]
 
@@ -37,6 +39,11 @@ pitch_scale = 2.01
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ppes8")
+
+[node name="ShapeCast3DWalls" type="ShapeCast3D" parent="."]
+transform = Transform3D(1.01, 0, 0, 0, 0.5, 0, 0, 0, 1.01, 0, 0, 0)
+shape = SubResource("CylinderShape3D_kf8x2")
+target_position = Vector3(0, 0, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -87,5 +94,11 @@ surface_material_override/0 = SubResource("ShaderMaterial_e0tk2")
 transform = Transform3D(0.1, 0, 0, 0, 0.2, 0, 0, 0, 0.1, -0.25, 0.5, -0.4)
 mesh = SubResource("SphereMesh_dytkj")
 surface_material_override/0 = SubResource("StandardMaterial3D_hhcqd")
+
+[node name="ledgeRayZ" type="RayCast3D" parent="displayModel"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0507506, 0.773067, -0.386575)
+
+[node name="ledgeRayY" type="RayCast3D" parent="displayModel/ledgeRayZ"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.285143, -0.302066)
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_nebhs")]

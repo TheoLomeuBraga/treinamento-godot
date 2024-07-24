@@ -25,9 +25,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_last_safe_pos()
 
-@export var wall_jump_power = 12.0
-@export var wall_jumps_per_jump = 1
-var wall_jumps_remaining = 1
+
+
 @export var jump_power = 12.0
 @export var gravity = 9.8
 @export var speed = 12.0
@@ -113,6 +112,11 @@ func move(delta):
 	
 	hit_floor = $ShapeCast3Dfloor.is_colliding()
 	
+	var ledge_contact = $displayModel/ledgeRayZ.is_colliding() and $displayModel/ledgeRayZ/ledgeRayY.is_colliding()
+	var ledge_ray_y_normal = $displayModel/ledgeRayZ.get_collision_normal()
+	
+	var velocity_y_last_frame = velocity.y
+	
 	if hit_floor:
 		if $RayCast3D.is_colliding() and movement_direction.x != 0 and movement_direction.z != 0:
 			floor_last_direction = $RayCast3D.get_collision_normal().direction_to(movement_direction)
@@ -121,26 +125,46 @@ func move(delta):
 			floor_last_direction = movement_direction
 			velocity = floor_last_direction * speed  * 100.0 * delta
 	else:
-		if air_ajust_speed > 0:
-			velocity = floor_last_direction * speed  * 100.0 * delta
-			floor_last_direction += movement_direction * (air_ajust_speed * delta)
+		if jumping:
 			
-			if (abs(floor_last_direction.x) + abs(floor_last_direction.z)) > 1.0:
-				floor_last_direction = floor_last_direction.normalized()
+			
+			if air_ajust_speed > 0:
 				
+				floor_last_direction += movement_direction * (air_ajust_speed * delta)
+				
+				if (abs(floor_last_direction.x) + abs(floor_last_direction.z)) > 1.0:
+					floor_last_direction = floor_last_direction
+				
+				
+					
+				if $ShapeCast3DWalls.is_colliding():
+					var hit_normal = $ShapeCast3DWalls.get_collision_normal(0)
+					print(velocity)
+					floor_last_direction = floor_last_direction.slide(hit_normal) 
+					print(velocity)
+					
+				velocity = floor_last_direction * speed  * 100.0 * delta
+				
+			else:
+				velocity = floor_last_direction * speed  * 100.0 * delta
 		else:
-			velocity = floor_last_direction * speed  * 100.0 * delta
+			velocity.x = 0
+			velocity.z = 0
 		
 	
-	if !jumping:
+	if hit_floor:
 		make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
 	
-	
-	if hit_floor and jump_current_power <= 0:
+	if ( hit_floor or ledge_contact ) and velocity_y_last_frame <= 0:
+		if ledge_contact:
+			ledge_ray_y_normal.y = 0
+			ledge_ray_y_normal = ledge_ray_y_normal.normalized()
+			$displayModel.look_at($displayModel.global_transform.origin - ledge_ray_y_normal,Vector3.UP)
+			
+		
 		jumping = false
 		velocity.y = 0
 		jump_current_power = 0
-		wall_jumps_remaining = wall_jumps_per_jump
 		$ShapeCast3Dceling.enabled = true
 			
 		if Input.is_action_just_pressed("jump") and velocity.y <= 0:
@@ -163,15 +187,23 @@ func move(delta):
 		velocity.y = jump_current_power * delta
 		
 	
+	
 	move_and_slide()
 	jump_current_power -= delta * (gravity * 100)
 	
-	
+
+func move_objects(delta):
+	Input.is_action_just_pressed("interact")
 
 func _process(delta):
 	if !Global.variables["pause"]:
 		look_around(delta)
-		move(delta)
+		var is_grabing_big_box = false
+		
+		if is_grabing_big_box:
+			move_objects(delta)
+		else:
+			move(delta)
 	
 	if Input.is_action_just_pressed("pause"):
 		pause()

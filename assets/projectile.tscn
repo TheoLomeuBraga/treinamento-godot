@@ -1,3 +1,19 @@
-[gd_scene format=3 uid="uid://knx0isi2t2up"]
+[gd_scene load_steps=3 format=3 uid="uid://knx0isi2t2up"]
+
+[ext_resource type="Texture2D" uid="uid://do30qd6n4svlx" path="res://assets/projectile.png" id="1_0omrq"]
+[ext_resource type="Script" path="res://assets/projectile.gd" id="1_a25yh"]
 
 [node name="Projectile" type="Node3D"]
+script = ExtResource("1_a25yh")
+texture = ExtResource("1_0omrq")
+color = Color(1, 1, 1, 1)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_0omrq")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
+target_position = Vector3(0, 1, 0)

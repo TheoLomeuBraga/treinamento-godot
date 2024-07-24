@@ -1,10 +1,11 @@
 extends CharacterBody3D
 
+var pause_menu_asset = preload("res://assets/pause menu/pause_menu.tscn")
 
 func pause():
 	Global.variables["pause"] = !Global.variables["pause"]
 	if Global.variables["pause"]:
-		add_child(load("res://assets/pause menu/pause_menu.tscn").instantiate())
+		add_child(pause_menu_asset.instantiate())
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	elif has_node("PauseMenu"):
@@ -190,25 +191,18 @@ func move(delta):
 	
 	move_and_slide()
 	jump_current_power -= delta * (gravity * 100)
-	
 
-func move_objects(delta):
-	Input.is_action_just_pressed("interact")
+var projectile_asset = preload("res://assets/projectile.tscn")
 
-var is_grabing_big_box = false
-func hit_box():
-	#print("hit box")
+func shoot(delta):
 	pass
 
 func _process(delta):
 	if !Global.variables["pause"]:
 		look_around(delta)
+		move(delta)
+		shoot(delta)
 		
-		
-		if is_grabing_big_box:
-			move_objects(delta)
-		else:
-			move(delta)
 	
 	if Input.is_action_just_pressed("pause"):
 		pause()

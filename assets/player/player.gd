@@ -27,9 +27,9 @@ func _ready():
 
 
 
-@export var jump_power = 12.0
+@export var jump_power = 0.5
 @export var gravity = 9.8
-@export var speed = 12.0
+@export var speed = 10.0
 var jump_current_power = 0.0
 
 
@@ -97,15 +97,15 @@ func make_display_model_look(movement_direction,camera_direction,delta):
 var jumping = false
 var hit_floor = false
 var floor_last_direction = Vector3.ZERO
-@export var air_ajust_speed = 0.5
+@export var air_ajust_speed = 0.25
+
+var move_input := Vector3.ZERO
 
 func move(delta):
-	var move_input := Vector3.ZERO
 	move_input.x = Input.get_axis("left","right")
 	move_input.z = Input.get_axis("foward","back")
 	
 	var camera_root = $cameraRootY
-	
 	var forward_direction = camera_root.global_transform.basis.z.normalized()
 	var right_direction = camera_root.global_transform.basis.x.normalized()
 	var movement_direction = (forward_direction * move_input.z + right_direction * move_input.x)
@@ -171,8 +171,10 @@ func move(delta):
 			$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
 			$AudioStreamPlayer.play()
 			make_display_model_look(movement_direction,-forward_direction.normalized(),-1)
-	
-	
+			
+			if ledge_contact:
+				floor_last_direction = movement_direction
+				velocity = floor_last_direction * speed  * 100.0 * delta
 	
 	
 	if $ShapeCast3Dceling.is_colliding():
@@ -193,10 +195,15 @@ func move(delta):
 func move_objects(delta):
 	Input.is_action_just_pressed("interact")
 
+var is_grabing_big_box = false
+func hit_box():
+	#print("hit box")
+	pass
+
 func _process(delta):
 	if !Global.variables["pause"]:
 		look_around(delta)
-		var is_grabing_big_box = false
+		
 		
 		if is_grabing_big_box:
 			move_objects(delta)

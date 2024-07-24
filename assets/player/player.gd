@@ -139,9 +139,7 @@ func move(delta):
 					
 				if $ShapeCast3DWalls.is_colliding():
 					var hit_normal = $ShapeCast3DWalls.get_collision_normal(0)
-					print(velocity)
 					floor_last_direction = floor_last_direction.slide(hit_normal) 
-					print(velocity)
 					
 				velocity = floor_last_direction * speed  * 100.0 * delta
 				

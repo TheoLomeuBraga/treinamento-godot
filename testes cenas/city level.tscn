@@ -2,9 +2,9 @@
 
 [ext_resource type="Shader" path="res://shaders/city level sky.gdshader" id="1_gtav3"]
 [ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="1_hmnjv"]
-[ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="3_ycf6e"]
 [ext_resource type="PackedScene" uid="uid://cd6fpwl5rd5jw" path="res://assets/reset_position_triger/reset_position_triger.tscn" id="4_5ej0h"]
 [ext_resource type="PackedScene" uid="uid://dmt0vrjojotty" path="res://assets/chekinpoint/chekinpoint.tscn" id="5_ovtph"]
+[ext_resource type="PackedScene" uid="uid://dc0mvh2ajt2nn" path="res://assets/player_rb/player_rb.tscn" id="5_vi6kt"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vd4yi"]
 shader = ExtResource("1_gtav3")
@@ -37,9 +37,6 @@ camera_attributes = SubResource("CameraAttributesPractical_hhki4")
 [node name="city_level" parent="." instance=ExtResource("1_hmnjv")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1.01114)
 
-[node name="Player" parent="." instance=ExtResource("3_ycf6e")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -23.8493, 1.56635, -1.88971)
-
 [node name="ResetPositionTriger" parent="." instance=ExtResource("4_5ej0h")]
 transform = Transform3D(325.11, 0, 0, 0, 9.14, 0, 0, 0, 629.685, 14.102, -10.4652, 0.594251)
 
@@ -67,3 +64,6 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="sters/MeshInstance3D5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_iaku7")
+
+[node name="PlayerRb" parent="." instance=ExtResource("5_vi6kt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2497, 3.56635, -2.53013)

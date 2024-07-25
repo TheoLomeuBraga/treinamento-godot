@@ -1,4 +1,5 @@
-extends CharacterBody3D
+extends RigidBody3D
+
 
 var pause_menu_asset = preload("res://assets/pause menu/pause_menu.tscn")
 
@@ -103,6 +104,8 @@ var floor_last_direction = Vector3.ZERO
 
 var move_input := Vector3.ZERO
 
+var velocity := Vector3.ZERO
+
 func move(delta):
 	move_input.x = Input.get_axis("left","right")
 	move_input.z = Input.get_axis("foward","back")
@@ -139,9 +142,7 @@ func move(delta):
 				
 				
 					
-				if $ShapeCast3DWalls.is_colliding():
-					var hit_normal = $ShapeCast3DWalls.get_collision_normal(0)
-					floor_last_direction = floor_last_direction.slide(hit_normal) 
+				
 					
 				velocity = floor_last_direction * speed  * 100.0 * delta
 				
@@ -188,11 +189,9 @@ func move(delta):
 		velocity.y = jump_current_power * delta
 		
 	
-	#stick to the floor when falling
-	if hit_floor == true and hit_floor_last_frame == false:
-		position.y -= 0.2
 	
-	move_and_slide()
+	
+	#move_and_slide()
 	jump_current_power -= delta * (gravity * 100)
 	hit_floor_last_frame = hit_floor
 
@@ -268,10 +267,10 @@ func _process(delta):
 		look_around(delta)
 		move(delta)
 		shot(delta)
-		
 	
 	if Input.is_action_just_pressed("pause"):
 		pause()
 		
 	
+
 

@@ -1,3 +1,4 @@
+@tool
 extends Node3D
 
 @export var texture : Texture
@@ -14,17 +15,24 @@ func _ready():
 
 var travel_time : float = 0
 func _process(delta):
+	
+	
+
 	$Sprite3D.texture = texture
 	$Sprite3D.modulate = color
-	$RayCast3D.position.z = delta
-	$RayCast3D.target_position.y = delta
+	
 	
 	$RayCast3D.scale.x = size
 	$RayCast3D.scale.y = size
 	$RayCast3D.scale.z = size
 	
-	travel_time += delta * speed
-	position -= global_transform.basis.z.normalized() * delta * speed
+	if not Engine.is_editor_hint():
+		$RayCast3D.position.z = delta
+		$RayCast3D.target_position.y = delta
+		travel_time += delta * speed
+		position -= global_transform.basis.z.normalized() * delta * speed
+	
+	
 	
 	
 	if $RayCast3D.is_colliding() or travel_time >= range:

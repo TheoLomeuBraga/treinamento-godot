@@ -198,19 +198,41 @@ func move(delta):
 
 var projectile_asset = preload("res://assets/projectile.tscn")
 
+
+
+enum shot_types {
+	semi_automatic = 0,
+	automatic = 1,
+}
+@export var shot_type : shot_types = shot_types.semi_automatic
+
 @export var fire_rate : float = 1
 var timer_next_shor : float = 0.1
 
-func shoot(delta):
+@export var shot_color : Color = Color.WHITE
+@export var shot_damage : float = 1
+
+func shot(delta):
 	
-	if hit_floor and timer_next_shor <= 0 and Input.get_action_strength("shoot"):
+	var shot_input : bool = false
+	if shot_type == 0:
+		shot_input = Input.is_action_just_pressed("shot")
+	elif shot_type == 1:
+		shot_input = Input.get_action_strength("shot") > 0
+	
+	if hit_floor and timer_next_shor <= 0 and shot_input:
 		timer_next_shor = fire_rate
 		
 		var projectile : Node3D = projectile_asset.instantiate()
 		get_tree().get_root().add_child(projectile)
 		projectile.global_position = $cameraRootY/cameraRootX/gunBarrel.global_position
 		projectile.global_rotation = $cameraRootY/cameraRootX/gunBarrel.global_rotation
-		aim_mode = true
+		
+		
+		projectile.color = shot_color
+		projectile.damage = shot_damage
+		
+	aim_mode = shot_input
 		
 	timer_next_shor -= delta
 
@@ -218,7 +240,7 @@ func _process(delta):
 	if !Global.variables["pause"]:
 		look_around(delta)
 		move(delta)
-		shoot(delta)
+		shot(delta)
 		
 	
 	if Input.is_action_just_pressed("pause"):

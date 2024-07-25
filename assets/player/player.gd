@@ -211,6 +211,8 @@ var timer_next_shor : float = 0.1
 
 @export var shot_color : Color = Color.WHITE
 @export var shot_damage : float = 1
+@export var shoot_speed  : float = 100
+@export var shoot_range  : float = 100
 
 func shot(delta):
 	
@@ -228,9 +230,16 @@ func shot(delta):
 		projectile.global_position = $cameraRootY/cameraRootX/gunBarrel.global_position
 		projectile.global_rotation = $cameraRootY/cameraRootX/gunBarrel.global_rotation
 		
+		if $cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.is_colliding():
+			$cameraRootY/cameraRootX/gunBarrel.look_at($cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.get_collision_point())
+			print("A")
+		else:
+			$cameraRootY/cameraRootX/gunBarrel.rotation = Vector3.ZERO
 		
 		projectile.color = shot_color
 		projectile.damage = shot_damage
+		projectile.speed = shoot_speed
+		projectile.range = shoot_range
 		
 	aim_mode = shot_input
 		

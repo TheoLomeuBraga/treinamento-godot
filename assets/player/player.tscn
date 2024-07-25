@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=15 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
 [ext_resource type="Shader" path="res://shaders/psx_geometry.gdshader" id="3_1cee6"]
 [ext_resource type="PackedScene" uid="uid://k234ra6vkxn6" path="res://assets/pause menu/pause_menu.tscn" id="4_nebhs"]
+[ext_resource type="Texture2D" uid="uid://de23hn7wiyte3" path="res://assets/player/cross_hair.png" id="5_bqg82"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppes8"]
 
@@ -60,6 +61,7 @@ shape = SubResource("CylinderShape3D_6x7qe")
 target_position = Vector3(0, 0.45, 0)
 
 [node name="cameraRootY" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="cameraRootX" type="Node3D" parent="cameraRootY"]
 
@@ -72,11 +74,15 @@ spring_length = 4.0
 margin = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="cameraRootY/cameraRootX/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 0.995337, 0.0964538, 0, -0.0964538, 0.995337, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 90.0
 far = 1000.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="cameraRootY/cameraRootX/SpringArm3D/Camera3D"]
+
+[node name="aimRay" type="RayCast3D" parent="cameraRootY/cameraRootX/SpringArm3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, 0, -100)
 
 [node name="displayModel" type="Node3D" parent="."]
 
@@ -102,3 +108,12 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0507
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.285143, -0.302066)
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_nebhs")]
+visible = false
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("5_bqg82")

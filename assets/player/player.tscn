@@ -34,7 +34,7 @@ albedo_color = Color(0, 0, 0, 1)
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_q547c")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="jumpAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_dresy")
 pitch_scale = 2.01
 
@@ -61,7 +61,6 @@ shape = SubResource("CylinderShape3D_6x7qe")
 target_position = Vector3(0, 0.45, 0)
 
 [node name="cameraRootY" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="cameraRootX" type="Node3D" parent="cameraRootY"]
 
@@ -74,14 +73,12 @@ spring_length = 4.0
 margin = 2.0
 
 [node name="Camera3D" type="Camera3D" parent="cameraRootY/cameraRootX/SpringArm3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 fov = 90.0
 far = 1000.0
 
 [node name="AudioListener3D" type="AudioListener3D" parent="cameraRootY/cameraRootX/SpringArm3D/Camera3D"]
 
 [node name="aimRay" type="RayCast3D" parent="cameraRootY/cameraRootX/SpringArm3D/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -100)
 
 [node name="displayModel" type="Node3D" parent="."]
@@ -114,6 +111,6 @@ visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+[node name="aim" type="TextureRect" parent="CenterContainer"]
 layout_mode = 2
 texture = ExtResource("5_bqg82")

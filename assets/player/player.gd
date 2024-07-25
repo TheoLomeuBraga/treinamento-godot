@@ -169,8 +169,8 @@ func move(delta):
 		if Input.is_action_just_pressed("jump") and velocity.y <= 0:
 			jumping = true
 			jump_current_power = jump_power * 100
-			$AudioStreamPlayer.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
-			$AudioStreamPlayer.play()
+			$jumpAudio.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
+			$jumpAudio.play()
 			make_display_model_look(movement_direction,-forward_direction.normalized(),-1)
 			
 			if ledge_contact:
@@ -219,8 +219,10 @@ func shot(delta):
 	var shot_input : bool = false
 	if shot_type == 0:
 		shot_input = Input.is_action_just_pressed("shot")
+		aim_mode = hit_floor and timer_next_shor <= 0 and shot_input
 	elif shot_type == 1:
 		shot_input = Input.get_action_strength("shot") > 0
+		aim_mode =  shot_input
 	
 	if hit_floor and timer_next_shor <= 0 and shot_input:
 		timer_next_shor = fire_rate
@@ -232,7 +234,6 @@ func shot(delta):
 		
 		if $cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.is_colliding():
 			$cameraRootY/cameraRootX/gunBarrel.look_at($cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.get_collision_point())
-			print("A")
 		else:
 			$cameraRootY/cameraRootX/gunBarrel.rotation = Vector3.ZERO
 		
@@ -241,7 +242,7 @@ func shot(delta):
 		projectile.speed = shoot_speed
 		projectile.range = shoot_range
 		
-	aim_mode = shot_input
+	
 		
 	timer_next_shor -= delta
 

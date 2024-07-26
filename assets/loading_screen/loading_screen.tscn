@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://m3xvkp38hi1u"]
+
+[ext_resource type="Script" path="res://assets/loading_screen/loading_screen.gd" id="1_gho6b"]
+[ext_resource type="Theme" uid="uid://dp1hrate7dwva" path="res://styles/ui_cyberpunck_style.tres" id="2_olgvb"]
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gho6b")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 2
+offset_top = 588.0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("2_olgvb")
+allow_lesser = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 588.0
+theme = ExtResource("2_olgvb")
+theme_override_font_sizes/font_size = 50
+text = "MENU_LOADING"
+horizontal_alignment = 1
+vertical_alignment = 1

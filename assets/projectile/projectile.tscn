@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://knx0isi2t2up"]
 
-[ext_resource type="Texture2D" uid="uid://do30qd6n4svlx" path="res://assets/projectile.png" id="1_0omrq"]
-[ext_resource type="Script" path="res://assets/projectile.gd" id="1_a25yh"]
+[ext_resource type="Script" path="res://assets/projectile/projectile.gd" id="1_plij2"]
+[ext_resource type="Texture2D" uid="uid://do30qd6n4svlx" path="res://assets/projectile/projectile.png" id="2_7kaof"]
 
 [node name="Projectile" type="Node3D"]
-script = ExtResource("1_a25yh")
-texture = ExtResource("1_0omrq")
+script = ExtResource("1_plij2")
+texture = ExtResource("2_7kaof")
 color = Color(1, 1, 1, 1)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 billboard = 1
 texture_filter = 0
-texture = ExtResource("1_0omrq")
+texture = ExtResource("2_7kaof")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 0, 1)

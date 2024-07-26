@@ -196,7 +196,7 @@ func move(delta):
 	jump_current_power -= delta * (gravity * 100)
 	hit_floor_last_frame = hit_floor
 
-var projectile_asset = preload("res://assets/projectile.tscn")
+var projectile_asset = preload("res://assets/projectile/projectile.tscn")
 
 
 

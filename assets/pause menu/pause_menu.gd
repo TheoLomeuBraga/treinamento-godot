@@ -25,7 +25,7 @@ func select_menu_type():
 		configuration_menu_on(true)
 
 func _on_main_menu_pressed():
-	get_tree().change_scene_to_file("res://assets/main_menu/main_menu.tscn")
+	Global.load_scene("res://assets/main_menu/main_menu.tscn")
 
 
 func _on_configurations_pressed():

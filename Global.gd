@@ -56,4 +56,10 @@ func load_config():
 	else:
 		print("config file not exist")
 		save_config()
-		
+
+var current_scene_loading := ""
+func load_scene(local : String):
+	current_scene_loading = local
+	get_tree().change_scene_to_file("res://assets/loading_screen/loading_screen.tscn")
+	print("loading: ", current_scene_loading)
+	

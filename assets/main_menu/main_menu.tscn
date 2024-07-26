@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bk8n7jxmpt2os"]
+[gd_scene load_steps=5 format=3 uid="uid://bk8n7jxmpt2os"]
 
 [ext_resource type="Script" path="res://assets/main_menu/menus.gd" id="1_0e51p"]
 [ext_resource type="Theme" uid="uid://dp1hrate7dwva" path="res://styles/ui_cyberpunck_style.tres" id="1_2ltkq"]
 [ext_resource type="PackedScene" uid="uid://dovgwxs8h0x35" path="res://assets/configiration menu/configuration_menu.tscn" id="2_l55so"]
+[ext_resource type="Texture2D" uid="uid://ciqeodkq613se" path="res://textures/main menu.png" id="3_kfely"]
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -13,6 +14,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_2ltkq")
 script = ExtResource("1_0e51p")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_top = -121.0
+offset_right = 1152.0
+offset_bottom = 647.0
+texture = ExtResource("3_kfely")
 
 [node name="main_menu" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -68,6 +76,7 @@ text = "MENU_EXIT
 "
 
 [node name="configuration_menu" parent="." instance=ExtResource("2_l55so")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="main_menu/play" to="." method="_on_play_pressed"]

@@ -21,8 +21,8 @@ Global="*res://Global.gd"
 
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/mode="viewport"
+window/stretch/aspect="ignore"
 
 [importer_defaults]
 

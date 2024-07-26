@@ -232,6 +232,10 @@ func shot(delta):
 	if hit_floor and timer_next_shor <= 0 and shot_input:
 		timer_next_shor = fire_rate
 		
+		
+		$shootAudio.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
+		$shootAudio.play()
+		
 		var i := 0
 		while i < shoot_palets:
 			var projectile : Node3D = projectile_asset.instantiate()

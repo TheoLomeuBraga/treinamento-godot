@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=19 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
 [ext_resource type="Shader" path="res://shaders/psx_geometry.gdshader" id="3_1cee6"]
+[ext_resource type="AudioStream" uid="uid://c2nlk0ibysfwt" path="res://sound efects/shot.ogg" id="3_t3mt2"]
 [ext_resource type="PackedScene" uid="uid://k234ra6vkxn6" path="res://assets/pause menu/pause_menu.tscn" id="4_nebhs"]
 [ext_resource type="Texture2D" uid="uid://de23hn7wiyte3" path="res://assets/player/cross_hair.png" id="5_bqg82"]
 
@@ -31,12 +32,37 @@ shader_parameter/albedo_color = null
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hhcqd"]
 albedo_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcwgw"]
+bg_color = Color(0.310617, 0.310617, 0.310617, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.517647, 0.517647, 0.517647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jhbvm"]
+bg_color = Color(0.854886, 0, 0.0885779, 1)
+border_width_left = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.517647, 0.517647, 0.517647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32h3e"]
+bg_color = Color(0, 0.672717, 0.775671, 1)
+border_width_left = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.517184, 0.517184, 0.517184, 1)
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_q547c")
 
 [node name="jumpAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_dresy")
 pitch_scale = 2.01
+
+[node name="shootAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t3mt2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ppes8")
@@ -107,10 +133,39 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.
 [node name="PauseMenu" parent="." instance=ExtResource("4_nebhs")]
 visible = false
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 1152.0
-offset_bottom = 648.0
+offset_bottom = 647.0
 
-[node name="aim" type="TextureRect" parent="CenterContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="HUD"]
 layout_mode = 2
+offset_top = 472.0
+offset_right = 40.0
+offset_bottom = 648.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hcwgw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jhbvm")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="ProgressBar2" type="ProgressBar" parent="HUD"]
+layout_mode = 2
+offset_left = 40.0
+offset_top = 472.0
+offset_right = 60.0
+offset_bottom = 648.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hcwgw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_32h3e")
+value = 50.0
+fill_mode = 3
+show_percentage = false
+
+[node name="aim" type="TextureRect" parent="HUD"]
+layout_mode = 2
+offset_left = 560.0
+offset_top = 307.0
+offset_right = 592.0
+offset_bottom = 339.0
 texture = ExtResource("5_bqg82")

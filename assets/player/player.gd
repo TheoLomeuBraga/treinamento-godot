@@ -45,6 +45,7 @@ func _input(event):
 
 var camera_movement = Vector2.ZERO
 func look_around(delta):
+	
 	var rootY = $cameraRootY
 	var rootX = $cameraRootY/cameraRootX
 	

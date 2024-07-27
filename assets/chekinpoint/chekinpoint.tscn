@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://assets/chekinpoint/chekinpoint.gd" id="1_2d8pb"]
 [ext_resource type="PackedScene" uid="uid://71vcwiewq3cj" path="res://assets/chekinpoint/chekinpoint.glb" id="2_flsgx"]
 [ext_resource type="AudioStream" uid="uid://bgkgxog7n2ogt" path="res://sound efects/chekinpoint.ogg" id="3_61cib"]
+[ext_resource type="Material" uid="uid://bqgjnto21ojp0" path="res://assets/chekinpoint/chekinpoint.tres" id="3_dunrs"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0uchp"]
 
@@ -12,9 +13,6 @@
 transparency = 1
 shading_mode = 2
 albedo_color = Color(0.45098, 0, 1, 0.560784)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa02b"]
-albedo_color = Color(0.407843, 0.407843, 1, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_db2yu"]
 angle_max = 507.7
@@ -44,7 +42,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fukqh")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.922, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-material_override = SubResource("StandardMaterial3D_qa02b")
+material_override = ExtResource("3_dunrs")
 emitting = false
 amount = 24
 lifetime = 0.5

@@ -233,7 +233,7 @@ func shot(delta):
 		timer_next_shor = fire_rate
 		
 		
-		$shootAudio.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
+		$shootAudio.pitch_scale = RandomNumberGenerator.new().randf_range(0.5, 1.0)
 		$shootAudio.play()
 		
 		var i := 0

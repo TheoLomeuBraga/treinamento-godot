@@ -31,7 +31,7 @@ bg_color = Color(0, 0.279352, 0.317483, 1)
 bg_color = Color(0.670588, 0.2, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xssld"]
-bg_color = Color(0.160282, 0.0973938, 0.183688, 1)
+bg_color = Color(0.160784, 0.0980392, 0.184314, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_io0kg"]
 bg_color = Color(0, 0.160784, 0.647059, 1)

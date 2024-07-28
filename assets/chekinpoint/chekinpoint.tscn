@@ -25,6 +25,8 @@ gravity = Vector3(0, 0, 0)
 [sub_resource type="SphereMesh" id="SphereMesh_t3xn0"]
 radius = 0.1
 height = 0.2
+radial_segments = 4
+rings = 2
 
 [node name="Chekinpoint" type="Area3D"]
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 1.844, 0)
@@ -46,6 +48,7 @@ material_override = ExtResource("3_dunrs")
 emitting = false
 amount = 24
 lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_db2yu")
 draw_pass_1 = SubResource("SphereMesh_t3xn0")

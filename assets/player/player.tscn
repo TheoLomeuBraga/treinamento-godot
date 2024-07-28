@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=24 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
 [ext_resource type="Shader" path="res://shaders/psx_geometry.gdshader" id="3_1cee6"]
 [ext_resource type="AudioStream" uid="uid://c2nlk0ibysfwt" path="res://sound efects/shot.ogg" id="3_t3mt2"]
 [ext_resource type="PackedScene" uid="uid://k234ra6vkxn6" path="res://assets/pause menu/pause_menu.tscn" id="4_nebhs"]
+[ext_resource type="Material" uid="uid://cd3u54pfjq4l6" path="res://assets/player/player_run_particles.tres" id="4_nwu8p"]
 [ext_resource type="Texture2D" uid="uid://de23hn7wiyte3" path="res://assets/player/cross_hair.png" id="5_bqg82"]
 [ext_resource type="Material" uid="uid://bnsibsraa4qki" path="res://assets/player/player_hit_floor_particles.tres" id="7_u5wbj"]
 
@@ -15,6 +16,10 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_yggde"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_6x7qe"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_ckxhw"]
+radial_segments = 4
+rings = 2
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y0lr8"]
 
@@ -55,7 +60,12 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.517184, 0.517184, 0.517184, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_1hhgv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jekf"]
+albedo_color = Color(0.505344, 0.505344, 0.505344, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_prllq"]
+radial_segments = 4
+rings = 2
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_q547c")
@@ -111,6 +121,12 @@ far = 1000.0
 target_position = Vector3(0, 0, -100)
 
 [node name="displayModel" type="Node3D" parent="."]
+
+[node name="runDust" type="GPUParticles3D" parent="displayModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.598228, 0.5)
+emitting = false
+process_material = ExtResource("4_nwu8p")
+draw_pass_1 = SubResource("SphereMesh_ckxhw")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="displayModel"]
 mesh = SubResource("CapsuleMesh_y0lr8")
@@ -175,10 +191,11 @@ texture = ExtResource("5_bqg82")
 
 [node name="groundInpact" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.945162, 0)
+material_override = SubResource("StandardMaterial3D_7jekf")
 emitting = false
 amount = 24
 lifetime = 0.25
 one_shot = true
 explosiveness = 1.0
 process_material = ExtResource("7_u5wbj")
-draw_pass_1 = SubResource("BoxMesh_1hhgv")
+draw_pass_1 = SubResource("SphereMesh_prllq")

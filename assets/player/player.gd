@@ -161,6 +161,7 @@ func move(delta):
 	if is_runing:
 		print(floor_last_direction)
 		velocity -= forward_direction * run_speed
+	$displayModel/runDust.emitting = is_runing
 	
 	if hit_floor:
 		if Input.is_action_just_pressed("run"):

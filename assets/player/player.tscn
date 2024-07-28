@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bjlgeaaroug1"]
+[gd_scene load_steps=21 format=3 uid="uid://bjlgeaaroug1"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_q547c"]
 [ext_resource type="AudioStream" uid="uid://qpoakekgt5d0" path="res://assets/player/jump.ogg" id="2_dresy"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://c2nlk0ibysfwt" path="res://sound efects/shot.ogg" id="3_t3mt2"]
 [ext_resource type="PackedScene" uid="uid://k234ra6vkxn6" path="res://assets/pause menu/pause_menu.tscn" id="4_nebhs"]
 [ext_resource type="Texture2D" uid="uid://de23hn7wiyte3" path="res://assets/player/cross_hair.png" id="5_bqg82"]
+[ext_resource type="Material" uid="uid://bnsibsraa4qki" path="res://assets/player/player_hit_floor_particles.tres" id="7_u5wbj"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ppes8"]
 
@@ -53,6 +54,8 @@ border_width_left = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.517184, 0.517184, 0.517184, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1hhgv"]
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_q547c")
@@ -169,3 +172,13 @@ offset_top = 307.0
 offset_right = 592.0
 offset_bottom = 339.0
 texture = ExtResource("5_bqg82")
+
+[node name="groundInpact" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.945162, 0)
+emitting = false
+amount = 24
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_u5wbj")
+draw_pass_1 = SubResource("BoxMesh_1hhgv")

@@ -163,6 +163,8 @@ func move(delta):
 		velocity -= forward_direction * run_speed
 	
 	if hit_floor:
+		if Input.is_action_just_pressed("run"):
+			is_runing = !is_runing
 		if not is_runing:
 			make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
 		else:
@@ -207,6 +209,7 @@ func move(delta):
 	#stick to the floor when falling
 	if hit_floor == true and hit_floor_last_frame == false:
 		position.y -= 0.2
+		$groundInpact.emitting = true
 	
 	move_and_slide()
 	jump_current_power -= delta * (gravity * 100)

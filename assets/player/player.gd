@@ -28,10 +28,7 @@ func _ready():
 
 
 
-@export var jump_power = 0.5
-@export var gravity = 9.8
-@export var speed = 10.0
-var jump_current_power = 0.0
+
 
 
 var mouse_movement = Vector2.ZERO
@@ -101,6 +98,12 @@ var hit_floor_last_frame = true
 var hit_floor = false
 var floor_last_direction = Vector3.ZERO
 @export var air_ajust_speed = 0.25
+@export var jump_power = 0.5
+@export var gravity = 9.8
+@export var speed = 5.0
+@export var run_speed = 10.0
+var is_runing := false
+var jump_current_power = 0.0
 
 var move_input := Vector3.ZERO
 
@@ -120,13 +123,16 @@ func move(delta):
 	
 	var velocity_y_last_frame = velocity.y
 	
+	
+	
 	if hit_floor:
 		if $RayCast3D.is_colliding() and movement_direction.x != 0 and movement_direction.z != 0:
 			floor_last_direction = $RayCast3D.get_collision_normal().direction_to(movement_direction)
-			velocity = floor_last_direction * speed  * 100.0 * delta
 		else:
 			floor_last_direction = movement_direction
-			velocity = floor_last_direction * speed  * 100.0 * delta
+		velocity = floor_last_direction * speed  * 100.0 * delta
+		
+			
 	else:
 		if jumping:
 			
@@ -152,8 +158,17 @@ func move(delta):
 			velocity.x = 0
 			velocity.z = 0
 	
+	if is_runing:
+		print(floor_last_direction)
+		velocity -= forward_direction * run_speed
+	
 	if hit_floor:
-		make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
+		if not is_runing:
+			make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
+		else:
+			make_display_model_look(-forward_direction,-forward_direction.normalized(),delta)
+	elif is_runing:
+		make_display_model_look(-forward_direction,-forward_direction.normalized(),delta)
 	
 	if ( hit_floor or ledge_contact ) and velocity_y_last_frame <= 0:
 		if ledge_contact:

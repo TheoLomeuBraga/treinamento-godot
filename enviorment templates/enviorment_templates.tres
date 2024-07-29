@@ -1,0 +1,18 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://quxwkglreyj8"]
+
+[ext_resource type="Shader" path="res://shaders/city level sky.gdshader" id="1_0xx0a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd4yi"]
+shader = ExtResource("1_0xx0a")
+shader_parameter/up_color = Color(0.32169, 0.000982349, 0.765233, 1)
+shader_parameter/down_color = Color(0.188611, 0.000199406, 0.270963, 1)
+
+[sub_resource type="Sky" id="Sky_8mmt4"]
+sky_material = SubResource("ShaderMaterial_vd4yi")
+
+[resource]
+background_mode = 2
+background_color = Color(1, 1, 1, 1)
+sky = SubResource("Sky_8mmt4")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)

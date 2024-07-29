@@ -1,27 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://gt75hoibpm27"]
+[gd_scene load_steps=15 format=3 uid="uid://gt75hoibpm27"]
 
-[ext_resource type="Shader" path="res://shaders/city level sky.gdshader" id="1_gtav3"]
 [ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="1_hmnjv"]
+[ext_resource type="Environment" uid="uid://quxwkglreyj8" path="res://enviorment templates/enviorment_templates.tres" id="1_x7ye3"]
 [ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="3_ycf6e"]
 [ext_resource type="PackedScene" uid="uid://cd6fpwl5rd5jw" path="res://assets/reset_position_triger/reset_position_triger.tscn" id="4_5ej0h"]
 [ext_resource type="PackedScene" uid="uid://dmt0vrjojotty" path="res://assets/chekinpoint/chekinpoint.tscn" id="5_ovtph"]
 [ext_resource type="Shader" path="res://shaders/psx_liquid.gdshader" id="6_un0rj"]
-[ext_resource type="Texture2D" uid="uid://cwg1kuephhgw6" path="res://textures/wall_texture.png" id="7_vinbi"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vd4yi"]
-shader = ExtResource("1_gtav3")
-shader_parameter/up_color = Color(0.32169, 0.000982349, 0.765233, 1)
-shader_parameter/down_color = Color(0.188611, 0.000199406, 0.270963, 1)
-
-[sub_resource type="Sky" id="Sky_8mmt4"]
-sky_material = SubResource("ShaderMaterial_vd4yi")
-
-[sub_resource type="Environment" id="Environment_1f3i2"]
-background_mode = 2
-background_color = Color(1, 1, 1, 1)
-sky = SubResource("Sky_8mmt4")
-ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+[ext_resource type="Texture2D" uid="uid://b8cjcj31uk5gm" path="res://textures/whater.png" id="7_epa44"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hhki4"]
 
@@ -32,24 +17,31 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_vos3v"]
 lightmap_size_hint = Vector2i(502, 502)
-size = Vector2(100, 100)
-subdivide_width = 50
+size = Vector2(25, 100)
+subdivide_width = 25
 subdivide_depth = 50
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ndvhk"]
 render_priority = 0
 shader = ExtResource("6_un0rj")
 shader_parameter/albedo_color = Color(1, 1, 1, 1)
-shader_parameter/scale = Vector2(50, 50)
+shader_parameter/scale = Vector2(25, 50)
 shader_parameter/amplitude = 0.1
 shader_parameter/frequency = 1.0
 shader_parameter/uv_speed = Vector2(0.1, 0.1)
-shader_parameter/albedo_texture = ExtResource("7_vinbi")
+shader_parameter/albedo_texture = ExtResource("7_epa44")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ss772"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6sb6m"]
+albedo_texture = ExtResource("7_epa44")
+uv1_scale = Vector3(1000, 1000, 1000)
 
 [node name="CityLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1f3i2")
+environment = ExtResource("1_x7ye3")
 camera_attributes = SubResource("CameraAttributesPractical_hhki4")
 
 [node name="city_level" parent="." instance=ExtResource("1_hmnjv")]
@@ -86,7 +78,12 @@ shape = SubResource("ConcavePolygonShape3D_iaku7")
 [node name="Player" parent="." instance=ExtResource("3_ycf6e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1289, 1.56635, -5.01662)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, -3, 0)
+[node name="whater" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -63, -3, 0)
 mesh = SubResource("QuadMesh_vos3v")
 surface_material_override/0 = SubResource("ShaderMaterial_ndvhk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="whater"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4201e-08, -0.553654)
+mesh = SubResource("QuadMesh_ss772")
+surface_material_override/0 = SubResource("StandardMaterial3D_6sb6m")

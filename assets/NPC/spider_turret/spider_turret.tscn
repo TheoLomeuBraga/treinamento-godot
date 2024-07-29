@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddijvwb6bc7tu"]
+
+[ext_resource type="PackedScene" uid="uid://cjjsef4c3rkbp" path="res://assets/NPC/spider_turret/spider_turret.glb" id="1_hqals"]
+
+[node name="SpiderTurret" type="CharacterBody3D"]
+
+[node name="spider_turret" parent="." instance=ExtResource("1_hqals")]

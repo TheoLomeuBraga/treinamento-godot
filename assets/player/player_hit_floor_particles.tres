@@ -1,10 +1,11 @@
 [gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bnsibsraa4qki"]
 
 [sub_resource type="Curve" id="Curve_rxq2a"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_3ob51"]
+width = 36
 curve = SubResource("Curve_rxq2a")
 
 [resource]
@@ -15,6 +16,5 @@ emission_ring_radius = 1.0
 emission_ring_inner_radius = 1.0
 gravity = Vector3(0, 0, 0)
 radial_accel_max = 50.0
-scale_min = 0.25
-scale_max = 0.5
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_3ob51")

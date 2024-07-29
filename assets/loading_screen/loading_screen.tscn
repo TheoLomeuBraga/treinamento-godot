@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://m3xvkp38hi1u"]
+[gd_scene load_steps=9 format=3 uid="uid://m3xvkp38hi1u"]
 
 [ext_resource type="Script" path="res://assets/loading_screen/loading_screen.gd" id="1_gho6b"]
 [ext_resource type="Theme" uid="uid://dp1hrate7dwva" path="res://styles/ui_cyberpunck_style.tres" id="2_olgvb"]
+[ext_resource type="Material" uid="uid://bo3vpm8bb8ypc" path="res://assets/chekinpoint/chekinpoint_particle_material.tres" id="3_m6swp"]
+[ext_resource type="Material" uid="uid://0aflouek5gqy" path="res://assets/chekinpoint/chekinpoint_particles.tres" id="4_glgsl"]
+[ext_resource type="SphereMesh" uid="uid://bnyqtdw4m82ul" path="res://3D models/spherical_particle_low_poly.tres" id="5_eqr05"]
+[ext_resource type="Material" uid="uid://cd3u54pfjq4l6" path="res://assets/player/player_run_particles.tres" id="6_tx6bd"]
+[ext_resource type="Material" uid="uid://bnsibsraa4qki" path="res://assets/player/player_hit_floor_particles.tres" id="7_gwpqj"]
+[ext_resource type="Environment" uid="uid://quxwkglreyj8" path="res://enviorment templates/enviorment_templates.tres" id="8_ch5t2"]
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -29,3 +35,37 @@ theme_override_font_sizes/font_size = 50
 text = "MENU_LOADING"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="particleRender" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="particleRender"]
+environment = ExtResource("8_ch5t2")
+
+[node name="chekinpoint" type="GPUParticles3D" parent="particleRender"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+material_override = ExtResource("3_m6swp")
+emitting = false
+amount = 24
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("4_glgsl")
+draw_pass_1 = ExtResource("5_eqr05")
+
+[node name="runDust" type="GPUParticles3D" parent="particleRender"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0161816, -0.970393)
+emitting = false
+amount = 64
+process_material = ExtResource("6_tx6bd")
+draw_pass_1 = ExtResource("5_eqr05")
+
+[node name="groundInpact" type="GPUParticles3D" parent="particleRender"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.054838, -1)
+emitting = false
+amount = 24
+lifetime = 0.25
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource("7_gwpqj")
+draw_pass_1 = ExtResource("5_eqr05")

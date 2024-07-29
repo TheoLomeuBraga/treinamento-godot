@@ -149,6 +149,8 @@ func move(delta):
 				if $ShapeCast3DWalls.is_colliding():
 					var hit_normal = $ShapeCast3DWalls.get_collision_normal(0)
 					floor_last_direction = floor_last_direction.slide(hit_normal) 
+				
+				
 					
 				velocity = floor_last_direction * speed  * 100.0 * delta
 				
@@ -195,6 +197,9 @@ func move(delta):
 				floor_last_direction = movement_direction
 				velocity = floor_last_direction * speed  * 100.0 * delta
 	
+	
+	if is_runing and $displayModel/wallHitCheker.is_colliding():
+		is_runing = false
 	
 	if $ShapeCast3Dceling.is_colliding():
 		$ShapeCast3Dceling.enabled = false

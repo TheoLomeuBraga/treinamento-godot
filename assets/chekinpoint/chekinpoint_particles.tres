@@ -1,0 +1,9 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://0aflouek5gqy"]
+
+[resource]
+angle_max = 507.7
+inherit_velocity_ratio = 80.0
+spread = 180.0
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)

@@ -63,3 +63,5 @@ func load_scene(local : String):
 	get_tree().change_scene_to_file("res://assets/loading_screen/loading_screen.tscn")
 	print("loading: ", current_scene_loading)
 	
+
+	

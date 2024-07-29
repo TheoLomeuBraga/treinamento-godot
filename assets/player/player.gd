@@ -40,7 +40,7 @@ func _input(event):
 		mouse_movement = Vector2.ZERO
 	
 
-var camera_movement = Vector2.ZERO
+
 func look_around(delta):
 	
 	var rootY = $cameraRootY
@@ -54,10 +54,10 @@ func look_around(delta):
 	rot_degres.x = rad_to_deg(rootX.rotation.x)
 	rot_degres.y = rad_to_deg(rootY.rotation.y)
 	
-	camera_movement += (mouse_movement / 100) + (joystick_movement)
+	var camera_movement : Vector2 = (mouse_movement / 100) + (joystick_movement)
 	
-	rot_degres.x = camera_movement.y
-	rot_degres.y = camera_movement.x 
+	rot_degres.x += camera_movement.y
+	rot_degres.y += camera_movement.x 
 	
 	if rot_degres.x < -75:
 		rot_degres.x = -75
@@ -100,8 +100,8 @@ var floor_last_direction = Vector3.ZERO
 @export var air_ajust_speed = 0.25
 @export var jump_power = 0.5
 @export var gravity = 9.8
-@export var speed = 5.0
-@export var run_speed = 10.0
+@export var speed = 8.0
+@export var run_speed = 12.0
 var is_runing := false
 var jump_current_power = 0.0
 
@@ -159,8 +159,7 @@ func move(delta):
 			velocity.z = 0
 	
 	if is_runing:
-		print(floor_last_direction)
-		velocity -= forward_direction * run_speed
+		velocity += -forward_direction * 100.0  * run_speed * delta
 	$displayModel/runDust.emitting = is_runing
 	
 	if hit_floor:

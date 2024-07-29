@@ -3,30 +3,19 @@
 [ext_resource type="Script" path="res://assets/chekinpoint/chekinpoint.gd" id="1_2d8pb"]
 [ext_resource type="PackedScene" uid="uid://71vcwiewq3cj" path="res://assets/chekinpoint/chekinpoint.glb" id="2_flsgx"]
 [ext_resource type="AudioStream" uid="uid://bgkgxog7n2ogt" path="res://sound efects/chekinpoint.ogg" id="3_61cib"]
-[ext_resource type="Material" uid="uid://bqgjnto21ojp0" path="res://assets/chekinpoint/chekinpoint.tres" id="3_dunrs"]
+[ext_resource type="Material" uid="uid://0aflouek5gqy" path="res://assets/chekinpoint/chekinpoint_particles.tres" id="3_dunrs"]
+[ext_resource type="Material" uid="uid://bo3vpm8bb8ypc" path="res://assets/chekinpoint/chekinpoint_particle_material.tres" id="3_kjmbe"]
+[ext_resource type="SphereMesh" uid="uid://bnyqtdw4m82ul" path="res://3D models/spherical_particle_low_poly.tres" id="4_lhnhn"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_0uchp"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_2kxjk"]
+radial_segments = 9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fukqh"]
 transparency = 1
 shading_mode = 2
 albedo_color = Color(0.45098, 0, 1, 0.560784)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_db2yu"]
-angle_max = 507.7
-inherit_velocity_ratio = 80.0
-spread = 180.0
-initial_velocity_min = 2.0
-initial_velocity_max = 2.0
-gravity = Vector3(0, 0, 0)
-
-[sub_resource type="SphereMesh" id="SphereMesh_t3xn0"]
-radius = 0.1
-height = 0.2
-radial_segments = 4
-rings = 2
 
 [node name="Chekinpoint" type="Area3D"]
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, 0, 1.844, 0)
@@ -44,14 +33,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fukqh")
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, -0.922, 0)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-material_override = ExtResource("3_dunrs")
+material_override = ExtResource("3_kjmbe")
 emitting = false
 amount = 24
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_db2yu")
-draw_pass_1 = SubResource("SphereMesh_t3xn0")
+process_material = ExtResource("3_dunrs")
+draw_pass_1 = ExtResource("4_lhnhn")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_61cib")

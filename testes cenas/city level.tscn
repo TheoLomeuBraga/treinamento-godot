@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://gt75hoibpm27"]
+[gd_scene load_steps=16 format=3 uid="uid://gt75hoibpm27"]
 
 [ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="1_hmnjv"]
 [ext_resource type="Environment" uid="uid://quxwkglreyj8" path="res://enviorment templates/enviorment_templates.tres" id="1_x7ye3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dmt0vrjojotty" path="res://assets/chekinpoint/chekinpoint.tscn" id="5_ovtph"]
 [ext_resource type="Shader" path="res://shaders/psx_liquid.gdshader" id="6_un0rj"]
 [ext_resource type="Texture2D" uid="uid://b8cjcj31uk5gm" path="res://textures/whater.png" id="7_epa44"]
+[ext_resource type="PackedScene" uid="uid://ddijvwb6bc7tu" path="res://assets/NPC/spider_turret/spider_turret.tscn" id="8_nnwij"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hhki4"]
 
@@ -50,9 +51,6 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1
 [node name="ResetPositionTriger" parent="." instance=ExtResource("4_5ej0h")]
 transform = Transform3D(325.11, 0, 0, 0, 9.14, 0, 0, 0, 629.685, 14.102, -10.4652, 0.594251)
 
-[node name="Chekinpoint" parent="." instance=ExtResource("5_ovtph")]
-transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -23.5652, 2.50292, 3.64028)
-
 [node name="sters" type="Node3D" parent="."]
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="sters"]
@@ -75,9 +73,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="sters/MeshInstance3D5/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_iaku7")
 
-[node name="Player" parent="." instance=ExtResource("3_ycf6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.1289, 1.56635, -5.01662)
-
 [node name="whater" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -63, -3, 0)
 mesh = SubResource("QuadMesh_vos3v")
@@ -87,3 +82,12 @@ surface_material_override/0 = SubResource("ShaderMaterial_ndvhk")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4201e-08, -0.553654)
 mesh = SubResource("QuadMesh_ss772")
 surface_material_override/0 = SubResource("StandardMaterial3D_6sb6m")
+
+[node name="Player" parent="." instance=ExtResource("3_ycf6e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0715, 1.56635, -3.34228)
+
+[node name="Chekinpoint" parent="." instance=ExtResource("5_ovtph")]
+transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -25.8868, 2.56635, 7.16328)
+
+[node name="SpiderTurret" parent="." instance=ExtResource("8_nnwij")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5211, 3.73931, 15.0559)

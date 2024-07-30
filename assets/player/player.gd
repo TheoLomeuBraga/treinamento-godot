@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 var pause_menu_asset = preload("res://assets/pause menu/pause_menu.tscn")
 
+@export var player_input_on := true
+
 func pause():
 	Global.variables["pause"] = !Global.variables["pause"]
 	if Global.variables["pause"]:
@@ -108,8 +110,9 @@ var jump_current_power = 0.0
 var move_input := Vector3.ZERO
 
 func move(delta):
-	move_input.x = Input.get_axis("left","right")
-	move_input.z = Input.get_axis("foward","back")
+	if player_input_on:
+		move_input.x = Input.get_axis("left","right")
+		move_input.z = Input.get_axis("foward","back")
 	
 	var camera_root = $cameraRootY
 	var forward_direction = camera_root.global_transform.basis.z.normalized()
@@ -165,7 +168,7 @@ func move(delta):
 	$displayModel/runDust.emitting = is_runing
 	
 	if hit_floor:
-		if Input.is_action_just_pressed("run"):
+		if Input.is_action_just_pressed("run") and player_input_on:
 			is_runing = !is_runing
 		if not is_runing:
 			make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
@@ -186,7 +189,7 @@ func move(delta):
 		jump_current_power = 0
 		$ShapeCast3Dceling.enabled = true
 			
-		if Input.is_action_just_pressed("jump") and velocity.y <= 0:
+		if player_input_on and Input.is_action_just_pressed("jump") and velocity.y <= 0:
 			jumping = true
 			jump_current_power = jump_power * 100
 			$jumpAudio.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
@@ -247,10 +250,10 @@ func shot(delta):
 	
 	var shot_input : bool = false
 	if shot_type == 0:
-		shot_input = Input.is_action_just_pressed("shot")
+		shot_input = Input.is_action_just_pressed("shot") and player_input_on
 		aim_mode = hit_floor and timer_next_shor <= 0 and shot_input
 	elif shot_type == 1:
-		shot_input = Input.get_action_strength("shot") > 0
+		shot_input = Input.get_action_strength("shot") > 0 and player_input_on
 		aim_mode =  shot_input
 	
 	if hit_floor and timer_next_shor <= 0 and shot_input:

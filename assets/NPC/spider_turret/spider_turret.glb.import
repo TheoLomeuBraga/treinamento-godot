@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cjjsef4c3rkbp"
+uid="uid://gkmrqfo4v38j"
 path="res://.godot/imported/spider_turret.glb-f4c36dfa8004c3e95bf2b357f7e21912.scn"
 
 [deps]
@@ -29,6 +29,14 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Armature/Skeleton3D": {
+"retarget/bone_map": Object(BoneMap,"resource_local_to_scene":false,"resource_name":"","profile":Object(SkeletonProfile,"resource_local_to_scene":false,"resource_name":"","root_bone":&"","scale_base_bone":&"","group_size":0,"bone_size":0,"script":null)
+,"bonemap":null,"script":null)
+
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

@@ -1,14 +1,19 @@
 @tool
 extends CharacterBody3D
 
+@export var idle_in_editor = true
+
 func _ready():
-	pass
+	if not Engine.is_editor_hint():
+		pass
 
 func _process(delta):
 	if Engine.is_editor_hint():
-		$spider_turret/AnimationPlayer.play("idle") 
+		if idle_in_editor:
+			$spider_turret/AnimationPlayer.play("idle") 
 	else:
-		pass
+		if idle_in_editor:
+			$spider_turret/AnimationPlayer.play("idle") 
 
 
 

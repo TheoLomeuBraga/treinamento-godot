@@ -13,9 +13,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if expressions_size > 0 and expressions_rig != null and expressions_mesh != null and m != null:
-		var pos_y = expressions_rig.position.y
-		pos_y *= 2
-		pos_y = int(pos_y)
-		m.set("uv1_offset",Vector2(0.0,((pos_y) / float(expressions_size))))
+		var pos_y := float(int(expressions_rig.position.y))
+		var step_size = 1.0 / expressions_size
+		pos_y *= step_size
+		pos_y -= step_size
+		
+		m.set("uv1_offset",Vector2(0.0,pos_y))
 		expressions_mesh.set_surface_override_material(0,m) 
 	#print(expressions_size > 0 , expressions_rig != null , expressions_mesh != null , m != null)

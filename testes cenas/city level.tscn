@@ -48,6 +48,10 @@ camera_attributes = SubResource("CameraAttributesPractical_hhki4")
 [node name="city_level" parent="." instance=ExtResource("1_hmnjv")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1.01114)
 
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="city_level"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -23.1031, 1.03457, 0.710455)
+size = Vector3(0.001, 151.012, 133.09)
+
 [node name="ResetPositionTriger" parent="." instance=ExtResource("4_5ej0h")]
 transform = Transform3D(325.11, 0, 0, 0, 9.14, 0, 0, 0, 629.685, 14.102, -10.4652, 0.594251)
 

@@ -18,6 +18,7 @@ func are_shaders_compiled() -> bool:
 
 func _ready():
 	ResourceLoader.load_threaded_request(Global.current_scene_loading)
+	
 	compile_shaders()
 
 func _process(delta):

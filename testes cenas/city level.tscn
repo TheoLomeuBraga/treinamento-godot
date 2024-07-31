@@ -88,11 +88,11 @@ mesh = SubResource("QuadMesh_ss772")
 surface_material_override/0 = SubResource("StandardMaterial3D_6sb6m")
 
 [node name="Player" parent="." instance=ExtResource("3_ycf6e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0715, 1.56635, -3.34228)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0715, 7.56635, -13.5809)
+nok_back_time = 1.0
 
 [node name="Chekinpoint" parent="." instance=ExtResource("5_ovtph")]
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -25.8868, 2.56635, 7.16328)
 
 [node name="SpiderTurret" parent="." instance=ExtResource("8_nnwij")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5211, 1.781, 15.0559)
-idle_in_editor = true

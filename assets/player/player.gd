@@ -109,8 +109,11 @@ var jump_current_power = 0.0
 
 var move_input := Vector3.ZERO
 
+var nok_back_time = 0.0
+var nok_back_power_direction = Vector3.LEFT * 1000
+
 func move(delta):
-	if player_input_on:
+	if player_input_on and nok_back_time <= 0:
 		move_input.x = Input.get_axis("left","right")
 		move_input.z = Input.get_axis("foward","back")
 	
@@ -121,7 +124,7 @@ func move(delta):
 	
 	hit_floor = $ShapeCast3Dfloor.is_colliding() or $RayCast3D.is_colliding()
 	
-	var ledge_contact = $displayModel/ledgeRayZ.is_colliding() and $displayModel/ledgeRayZ/ledgeRayY.is_colliding()
+	var ledge_contact = $displayModel/ledgeRayZ.is_colliding() and $displayModel/ledgeRayZ/ledgeRayY.is_colliding() and nok_back_time <= 0
 	var ledge_ray_y_normal = $displayModel/ledgeRayZ.get_collision_normal()
 	
 	var velocity_y_last_frame = velocity.y
@@ -162,13 +165,16 @@ func move(delta):
 		else:
 			velocity.x = 0
 			velocity.z = 0
+			
+		if nok_back_time > 0:
+			velocity += nok_back_power_direction * delta
 	
 	if is_runing:
 		velocity += -forward_direction * 100.0  * run_speed * delta
 	$displayModel/runDust.emitting = is_runing
 	
 	if hit_floor:
-		if Input.is_action_just_pressed("run") and player_input_on:
+		if Input.is_action_just_pressed("run") and player_input_on and nok_back_time <= 0:
 			is_runing = !is_runing
 		if not is_runing:
 			make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
@@ -189,7 +195,7 @@ func move(delta):
 		jump_current_power = 0
 		$ShapeCast3Dceling.enabled = true
 			
-		if player_input_on and Input.is_action_just_pressed("jump") and velocity.y <= 0:
+		if player_input_on and nok_back_time <= 0 and Input.is_action_just_pressed("jump") and velocity.y <= 0:
 			jumping = true
 			jump_current_power = jump_power * 100
 			$jumpAudio.pitch_scale = RandomNumberGenerator.new().randf_range(0.75, 1.25)
@@ -222,6 +228,13 @@ func move(delta):
 	move_and_slide()
 	jump_current_power -= delta * (gravity * 100)
 	hit_floor_last_frame = hit_floor
+	
+	
+	if nok_back_time > 0:
+		if hit_floor:
+			nok_back_time -= delta
+	else:
+		nok_back_time = 0
 
 var projectile_asset = preload("res://assets/projectile/projectile.tscn")
 
@@ -250,10 +263,10 @@ func shot(delta):
 	
 	var shot_input : bool = false
 	if shot_type == 0:
-		shot_input = Input.is_action_just_pressed("shot") and player_input_on
+		shot_input = Input.is_action_just_pressed("shot")
 		aim_mode = hit_floor and timer_next_shor <= 0 and shot_input
 	elif shot_type == 1:
-		shot_input = Input.get_action_strength("shot") > 0 and player_input_on
+		shot_input = Input.get_action_strength("shot") > 0
 		aim_mode =  shot_input
 	
 	if hit_floor and timer_next_shor <= 0 and shot_input:
@@ -296,9 +309,11 @@ func shot(delta):
 
 func _process(delta):
 	if !Global.variables["pause"]:
-		look_around(delta)
+		
 		move(delta)
-		shot(delta)
+		if player_input_on:
+			look_around(delta)
+			shot(delta)
 		
 	
 	if Input.is_action_just_pressed("pause"):

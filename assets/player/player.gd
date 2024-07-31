@@ -27,6 +27,7 @@ func _ready():
 	remove_child($PauseMenu)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	set_last_safe_pos()
+	Global.variables["player"] = self
 
 
 
@@ -247,7 +248,7 @@ enum shot_types {
 }
 @export var shot_type : shot_types = shot_types.semi_automatic
 
-@export var fire_rate : float = 1
+@export var fire_rate : float = 0.1
 var timer_next_shor : float = 0.1
 
 @export var shot_color : Color = Color.WHITE
@@ -255,7 +256,7 @@ var timer_next_shor : float = 0.1
 @export var shoot_speed  : float = 100
 @export var shoot_range  : float = 100
 @export var shoot_palets : int = 1
-@export var shoot_inaccuracy : float = 10
+@export var shoot_inaccuracy : float = 0.5
 
 
 
@@ -292,11 +293,10 @@ func shot(delta):
 			
 			
 			if $cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.is_colliding():
-				$cameraRootY/cameraRootX/gunBarrel.look_at($cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.get_collision_point())
-			else:
-				$cameraRootY/cameraRootX/gunBarrel.rotation = Vector3.ZERO
+				projectile.look_at($cameraRootY/cameraRootX/SpringArm3D/Camera3D/aimRay.get_collision_point(),Vector3.UP)
+
 				
-			$cameraRootY/cameraRootX/gunBarrel.rotation_degrees += inaccuracy
+			projectile.rotation_degrees += inaccuracy
 		
 			projectile.color = shot_color
 			projectile.damage = shot_damage

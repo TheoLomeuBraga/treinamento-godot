@@ -27,10 +27,10 @@ func _process(delta):
 	$RayCast3D.scale.z = size
 	
 	if not Engine.is_editor_hint():
-		$RayCast3D.position.z = delta
-		$RayCast3D.target_position.y = delta
+		$RayCast3D.position.z = -(delta * speed)
+		$RayCast3D.target_position.y = -(delta * speed)
 		travel_time += delta * speed
-		position -= global_transform.basis.z.normalized() * delta * speed
+		position += global_transform.basis.z.normalized() * -(delta * speed)
 	
 	
 	

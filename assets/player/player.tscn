@@ -114,6 +114,7 @@ far = 1000.0
 
 [node name="aimRay" type="RayCast3D" parent="cameraRootY/cameraRootX/SpringArm3D/Camera3D"]
 target_position = Vector3(0, 0, -100)
+hit_from_inside = true
 
 [node name="displayModel" type="Node3D" parent="."]
 

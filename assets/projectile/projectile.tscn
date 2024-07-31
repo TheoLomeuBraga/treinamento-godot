@@ -15,5 +15,5 @@ texture_filter = 0
 texture = ExtResource("2_7kaof")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, -2.18557e-07, 5, 0, -5, -2.18557e-07, 0, 0, 1)
+transform = Transform3D(-5, 7.54979e-07, 3.30012e-14, 0, -2.18557e-07, 5, 7.54979e-07, 5, 2.18557e-07, 0, 0, -5)
 target_position = Vector3(0, 1, 0)

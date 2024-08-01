@@ -10,9 +10,16 @@ func pause():
 		add_child(pause_menu_asset.instantiate())
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
+		
 	elif has_node("PauseMenu"):
 		remove_child($PauseMenu)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		
+		
+	if Global.variables["pause"]:
+		Engine.time_scale = 0
+	else:
+		Engine.time_scale = 1
 		
 
 var last_safe_position = Vector3.ZERO
@@ -309,7 +316,6 @@ func shot(delta):
 
 func _process(delta):
 	if !Global.variables["pause"]:
-		
 		move(delta)
 		if player_input_on:
 			look_around(delta)

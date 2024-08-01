@@ -21,40 +21,50 @@ func _ready():
 
 var projectile_asset = preload("res://assets/projectile/projectile.tscn")
 
+var player_pos = null
 var colldown : float = 0
-func shoot():
+func shot():
 	if colldown <= 0:
-		$spider_turret/AnimationPlayer.play("strong shoot")
-		var projectile : Node3D = projectile_asset.instantiate()
-	
-		get_tree().get_root().add_child(projectile)
-		projectile.global_position = gunBarrel.global_position
-		projectile.global_rotation = gunBarrel.global_rotation
-		projectile.color = Color.RED
-		projectile.damage = 2
-		projectile.speed = 5
-		projectile.range = 100
-		colldown = 1
 		
-		$spider_turret/Armature/GeneralSkeleton/Cube/gunBarrel/AudioStreamPlayer3D.play()
+		if player_pos.distance_to(position) > 5:
+			$spider_turret/AnimationPlayer.play("strong shoot")
+			var projectile : Node3D = projectile_asset.instantiate()
+	
+			get_tree().get_root().add_child(projectile)
+		
+			projectile.global_position = gunBarrel.global_position
+			projectile.global_rotation = gunBarrel.global_rotation
+			projectile.color = Color.RED
+			projectile.damage = 2
+			projectile.speed = 5
+			projectile.range = 100
+			colldown = 1
+		
+			if player_pos != null:
+				projectile.look_at(player_pos,Vector3.UP)
+		
+			$spider_turret/Armature/GeneralSkeleton/Cube/gunBarrel/AudioStreamPlayer3D.play()
+		else:
+			$spider_turret/AnimationPlayer.play("mele atack")
+			colldown = 1
 
 func idle(delta):
 	if colldown <= 0:
 		$spider_turret/AnimationPlayer.play("idle")
 	
 	
-	shoot()
+	shot()
 	colldown -= delta
-	if position.distance_to(player_pos) > 10 and colldown <= 0:
+	if position.distance_to(player_pos) > 20 and colldown <= 0:
 		behavior_state = 2
 	
 
 func chase(delta):
 	$spider_turret/AnimationPlayer.play("walk")
-	if position.distance_to(player_pos) < 10:
+	if position.distance_to(player_pos) < 20:
 		behavior_state = 1
 
-var player_pos = null
+
 func _process(delta):
 	
 	if Engine.is_editor_hint():

@@ -24,6 +24,10 @@ Global="*res://scripts/Global.gd"
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/TextureUVRig/plugin.cfg")
+
 [importer_defaults]
 
 texture={

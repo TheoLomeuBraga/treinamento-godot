@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c8dgosv2bjf8c"
+path="res://.godot/imported/hit.ogg-e36339c11fa43bf481bffb0a9340acd2.oggvorbisstr"
+
+[deps]
+
+source_file="res://sound efects/hit sound/hit.ogg"
+dest_files=["res://.godot/imported/hit.ogg-e36339c11fa43bf481bffb0a9340acd2.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

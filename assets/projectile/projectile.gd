@@ -14,6 +14,9 @@ func _ready():
 
 
 var travel_time : float = 0
+@export var explosion_effect : PackedScene
+@export var hit_sound : PackedScene
+
 func _process(delta):
 	
 	
@@ -38,4 +41,13 @@ func _process(delta):
 			for c in collider.get_children():
 				if c is CharacterSheet:
 					c.hit(damage)
+					if explosion_effect != null:
+						var explosion = explosion_effect.instantiate()
+						get_tree().get_root().add_child(explosion)
+						explosion.global_position = global_position
+						explosion.amount = 4
+						explosion.lifetime = 1
+						if hit_sound != null:
+							explosion.add_child(hit_sound.instantiate())
+			
 		queue_free()

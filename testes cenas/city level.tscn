@@ -79,7 +79,16 @@ fire_rate = 0.25
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -25.8868, 2.56635, 7.16328)
 
 [node name="SpiderTurret" parent="." instance=ExtResource("8_nnwij")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -16.5211, 1.781, 15.0559)
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -16.5211, 1.781, 15.0559)
+
+[node name="SpiderTurret2" parent="." instance=ExtResource("8_nnwij")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -10.4722, 1.781, 14.1944)
+
+[node name="SpiderTurret3" parent="." instance=ExtResource("8_nnwij")]
+transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -5.22394, 1.781, 13.4759)
+
+[node name="SpiderTurret4" parent="." instance=ExtResource("8_nnwij")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -8.22394, 1.781, 21.4759)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_1mwng")

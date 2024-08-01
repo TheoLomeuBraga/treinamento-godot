@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://knx0isi2t2up"]
+[gd_scene load_steps=5 format=3 uid="uid://knx0isi2t2up"]
 
 [ext_resource type="Script" path="res://assets/projectile/projectile.gd" id="1_plij2"]
 [ext_resource type="Texture2D" uid="uid://do30qd6n4svlx" path="res://assets/projectile/projectile.png" id="2_7kaof"]
+[ext_resource type="PackedScene" uid="uid://0py3ynsdfe35" path="res://particle effects/spark blast/spark blast.tscn" id="3_uequq"]
+[ext_resource type="PackedScene" uid="uid://bv5wymt26xomy" path="res://sound efects/hit sound/hit_sound.tscn" id="4_ujutf"]
 
 [node name="Projectile" type="Node3D"]
 script = ExtResource("1_plij2")
 texture = ExtResource("2_7kaof")
 color = Color(1, 1, 1, 1)
 damage = 1
+explosion_effect = ExtResource("3_uequq")
+hit_sound = ExtResource("4_ujutf")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

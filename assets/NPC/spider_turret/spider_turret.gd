@@ -74,12 +74,17 @@ func pain(delta):
 		behavior_state = 2
 
 @export var explosion_effect : PackedScene
+@export var hit_sound : PackedScene
 func death(delta):
 	if explosion_effect != null:
 		var explosion = explosion_effect.instantiate()
 		get_tree().get_root().add_child(explosion)
 		explosion.global_position = global_position
-		explosion.amount = 64
+		explosion.amount = 32
+		explosion.lifetime = 2
+		explosion.lifetime = 1
+		if hit_sound != null:
+				explosion.add_child(hit_sound.instantiate())
 	queue_free()
 
 func _process(delta):

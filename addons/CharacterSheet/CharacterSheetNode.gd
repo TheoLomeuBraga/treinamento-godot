@@ -11,9 +11,10 @@ class_name  CharacterSheet
 @export var max_power: int = 100
 
 
-
+var hited = false
 var health_change = 0
 func hit(points):
+	hited = true
 	health_change -= max(0,points-defence_percentage) 
 	health -= points
 	if health < 0:
@@ -27,6 +28,7 @@ func heal(points):
 
 signal health_changed(current_health,health_change)
 signal health_is_over()
+signal no_effect()
 
 func _ready():
 	pass 
@@ -39,5 +41,8 @@ func _process(delta):
 			health_is_over.emit()
 		else:
 			health_changed.emit(health,health_change)
+	elif hited:
+		no_effect.emit()
+	hited = false
 	health_change = 0
 	

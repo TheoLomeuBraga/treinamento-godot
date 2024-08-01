@@ -208,7 +208,8 @@ texture = ExtResource("5_bqg82")
 
 [node name="CharacterSheet" type="Node" parent="."]
 script = ExtResource("10_5yqnm")
-defence_percentage = 0
+defence_percentage = 5
 
 [connection signal="health_changed" from="CharacterSheet" to="." method="_on_character_sheet_health_changed"]
 [connection signal="health_is_over" from="CharacterSheet" to="." method="_on_character_sheet_health_is_over"]
+[connection signal="no_effect" from="CharacterSheet" to="." method="_on_character_sheet_no_effect"]

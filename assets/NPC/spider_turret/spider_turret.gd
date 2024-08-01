@@ -36,7 +36,7 @@ func shot():
 			projectile.global_rotation = gunBarrel.global_rotation
 			projectile.color = Color.RED
 			projectile.damage = 2
-			projectile.speed = 5
+			projectile.speed = 20
 			projectile.range = 100
 			colldown = 1
 		

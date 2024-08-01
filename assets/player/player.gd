@@ -342,9 +342,17 @@ func _process(delta):
 
 
 
-func _on_character_sheet_health_changed(health, health_change):
-	pass
+func _on_character_sheet_health_changed(current_health, health_change):
+	print("current_health = ",current_health)
+	print("health_change = ",health_change)
 
 
 func _on_character_sheet_health_is_over():
-	pass
+	print("death")
+
+
+
+
+
+func _on_character_sheet_no_effect():
+	print("no effect")

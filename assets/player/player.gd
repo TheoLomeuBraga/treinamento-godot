@@ -112,6 +112,14 @@ var floor_last_direction = Vector3.ZERO
 @export var gravity = 9.8
 @export var speed = 8.0
 @export var run_speed = 12.0
+
+@export var upgrade_list : Dictionary = {
+	"run":false,
+	"grab_on_ledjes":false,
+	"cannon":false,
+}
+
+
 var is_runing := false
 var jump_current_power = 0.0
 
@@ -132,7 +140,7 @@ func move(delta):
 	
 	hit_floor = $ShapeCast3Dfloor.is_colliding() or $RayCast3D.is_colliding()
 	
-	var ledge_contact = $displayModel/ledgeRayZ.is_colliding() and $displayModel/ledgeRayZ/ledgeRayY.is_colliding() and nok_back_time <= 0
+	var ledge_contact = $displayModel/ledgeRayZ.is_colliding() and $displayModel/ledgeRayZ/ledgeRayY.is_colliding() and nok_back_time <= 0 and upgrade_list["grab_on_ledjes"]
 	var ledge_ray_y_normal = $displayModel/ledgeRayZ.get_collision_normal()
 	
 	var velocity_y_last_frame = velocity.y
@@ -182,7 +190,7 @@ func move(delta):
 	$displayModel/runDust.emitting = is_runing
 	
 	if hit_floor:
-		if Input.is_action_just_pressed("run") and player_input_on and nok_back_time <= 0:
+		if Input.is_action_just_pressed("run") and player_input_on and nok_back_time <= 0 and upgrade_list["run"]:
 			is_runing = !is_runing
 		if not is_runing:
 			make_display_model_look(movement_direction,-forward_direction.normalized(),delta)
@@ -266,7 +274,6 @@ var timer_next_shor : float = 0.1
 @export var shoot_inaccuracy : float = 0.5
 
 
-
 func shot(delta):
 	
 	var shot_input : bool = false
@@ -314,12 +321,18 @@ func shot(delta):
 		
 	timer_next_shor -= delta
 
+func update_ui():
+	$HUD/HealthBar.value = $CharacterSheet.health
+	$HUD/PowerBar.value = $CharacterSheet.power
+
 func _process(delta):
 	if !Global.variables["pause"]:
 		move(delta)
 		if player_input_on:
 			look_around(delta)
-			shot(delta)
+			if upgrade_list["cannon"]:
+				shot(delta)
+		update_ui()
 		
 	
 	if Input.is_action_just_pressed("pause"):
@@ -327,3 +340,11 @@ func _process(delta):
 		
 	
 
+
+
+func _on_character_sheet_health_changed(health, health_change):
+	pass
+
+
+func _on_character_sheet_health_is_over():
+	pass

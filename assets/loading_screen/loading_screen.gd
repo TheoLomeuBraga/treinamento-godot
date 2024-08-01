@@ -23,6 +23,7 @@ func _ready():
 
 func _process(delta):
 	Global.variables["pause"] = false
+	Engine.time_scale = 1
 	var progress := []
 	ResourceLoader.load_threaded_get_status(Global.current_scene_loading,progress)
 	$ProgressBar.value = progress[0] * 100

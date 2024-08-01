@@ -26,7 +26,7 @@ window/stretch/aspect="ignore"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/TextureUVRig/plugin.cfg")
+enabled=PackedStringArray("res://addons/CharacterSheet/plugin.cfg", "res://addons/TextureUVRig/plugin.cfg")
 
 [importer_defaults]
 

@@ -4,7 +4,7 @@ extends Node3D
 @export var texture : Texture
 @export var color : Color
 @export var size : float = 5.0
-@export var damage : float = 1.0
+@export var damage : int = 20.0
 @export var speed : float = 1.0
 @export var range : float = 10.0
 
@@ -31,9 +31,10 @@ func _process(delta):
 		$RayCast3D.target_position.y = -(delta * speed)
 		travel_time += delta * speed
 		position += global_transform.basis.z.normalized() * -(delta * speed)
-	
-	
-	
-	
+		
 	if $RayCast3D.is_colliding() or travel_time >= range:
+		var colider = $RayCast3D.get_collider()
+		for c in colider.get_children():
+			if c is CharacterSheet:
+				c.hit(damage)
 		queue_free()

@@ -20,6 +20,8 @@ func _ready():
 	if not Engine.is_editor_hint():
 		pass
 	gunBarrel = $spider_turret/Armature/GeneralSkeleton/Cube/gunBarrel
+	
+	
 
 var projectile_asset = preload("res://assets/projectile/projectile.tscn")
 
@@ -71,11 +73,21 @@ func chase(delta):
 	if position.distance_to(player_pos) < 20:
 		behavior_state = 1
 
+func set_color(color : Color):
+	for m in damage_paint_targets:
+		if m.get_surface_override_material(0) == null:
+			m.set_surface_override_material(0,m.mesh.surface_get_material(0).duplicate())
+		m.get_surface_override_material(0).set("albedo_color",color)
+
+@export var damage_paint_targets : Array[MeshInstance3D]
 func pain(delta):
 	$spider_turret/AnimationPlayer.play("damage")
+	
+	set_color(Color(1,0,0,1))
 		
 	colldown -= delta
 	if colldown <= 0:
+		set_color(Color(1,1,1,1))
 		behavior_state = 2
 
 @export var explosion_effect : PackedScene
@@ -111,6 +123,20 @@ func _process(delta):
 			elif behavior_state == 4:
 				death(delta)
 
+
+var timer_to_next_path_update : float = 0
+var next_path_position : Vector3 = Vector3.ZERO
+
+func get_next_path_position(delta) -> Vector3:
+	
+	timer_to_next_path_update -= delta
+	
+	if timer_to_next_path_update < 0:
+		next_path_position = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
+		timer_to_next_path_update = RandomNumberGenerator.new().randf_range(0.75,1.25)
+	
+	return next_path_position
+
 func _physics_process(delta):
 	if player_pos != null:
 		if behavior_state == 1:
@@ -118,7 +144,7 @@ func _physics_process(delta):
 			$spider_turret.look_at(global_position+Vector3(-direction.x,0,-direction.z),Vector3.UP)
 		elif behavior_state == 2:
 			$NavigationAgent3D.target_position = player_pos
-			var direction : Vector3 = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
+			var direction : Vector3 = get_next_path_position(delta)
 			velocity = direction * speed * delta
 			move_and_slide()
 			$spider_turret.look_at(global_position+Vector3(-direction.x,0,-direction.z),Vector3.UP)

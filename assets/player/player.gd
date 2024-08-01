@@ -325,14 +325,18 @@ func update_ui():
 	$HUD/HealthBar.value = $CharacterSheet.health
 	$HUD/PowerBar.value = $CharacterSheet.power
 
+var in_conversation : bool = false
 func _process(delta):
 	if !Global.variables["pause"]:
-		move(delta)
-		if player_input_on:
-			look_around(delta)
-			if upgrade_list["cannon"]:
-				shot(delta)
-		update_ui()
+		if not in_conversation:
+			move(delta)
+			if player_input_on:
+				look_around(delta)
+				if upgrade_list["cannon"]:
+					shot(delta)
+			update_ui()
+		else:
+			pass
 		
 	
 	if Input.is_action_just_pressed("pause"):

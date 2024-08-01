@@ -10,15 +10,16 @@ class_name  CharacterSheet
 @export var power : int = 50
 @export var max_power: int = 100
 
-
-var hited = false
-var health_change = 0
+var invencible : bool = false
+var hited : bool = false
+var health_change : int = 0
 func hit(points):
-	hited = true
-	health_change -= max(0,points-defence_percentage) 
-	health -= points
-	if health < 0:
-		health = 0
+	if not invencible:
+		hited = true
+		health_change -= max(0,points-defence_percentage) 
+		health -= points
+		if health < 0:
+			health = 0
 
 func heal(points):
 	health_change += points

@@ -4,6 +4,8 @@ extends Node
 
 var m : Material
 func _ready():
+	if expressions_mesh.get_surface_override_material(0) == null:
+		expressions_mesh.set_surface_override_material(0,expressions_mesh.mesh.surface_get_material(0).duplicate())
 	m = expressions_mesh.get_surface_override_material(0)
 
 @export var expressions_size : int = 1.0
@@ -36,6 +38,7 @@ func _process(delta):
 		pos *= step_size
 		pos -= step_size
 		
-		m.set("uv1_offset",Vector2(0.0,pos))
-		expressions_mesh.set_surface_override_material(0,m) 
+		if m != null:
+			m.set("uv1_offset",Vector2(0.0,pos))
+			expressions_mesh.set_surface_override_material(0,m) 
 	#print(expressions_size > 0 , expressions_rig != null , expressions_mesh != null , m != null)

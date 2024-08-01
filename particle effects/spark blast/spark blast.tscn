@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://0py3ynsdfe35"]
+[gd_scene load_steps=5 format=3 uid="uid://0py3ynsdfe35"]
 
 [ext_resource type="SphereMesh" uid="uid://bnyqtdw4m82ul" path="res://3D models/spherical_particle_low_poly.tres" id="1_3mw2y"]
+[ext_resource type="Script" path="res://particle effects/delete_particle_after_use.gd" id="2_ncdcu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rlg8t"]
 vertex_color_use_as_albedo = true
@@ -21,10 +22,11 @@ collision_use_scale = true
 
 [node name="SparkBlast" type="GPUParticles3D"]
 material_override = SubResource("StandardMaterial3D_rlg8t")
-amount = 16
+amount = 32
 lifetime = 5.0
 explosiveness = 1.0
 fixed_fps = 60
 collision_base_size = 0.1
 process_material = SubResource("ParticleProcessMaterial_vcuh8")
 draw_pass_1 = ExtResource("1_3mw2y")
+script = ExtResource("2_ncdcu")

@@ -72,6 +72,10 @@ upgrade_list = {
 }
 shot_type = 1
 
+[node name="CharacterSheet" type="Node" parent="."]
+script = ExtResource("10_5yqnm")
+defence_percentage = 0
+
 [node name="jumpAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_dresy")
 pitch_scale = 2.01
@@ -205,10 +209,6 @@ offset_top = 307.0
 offset_right = 592.0
 offset_bottom = 339.0
 texture = ExtResource("5_bqg82")
-
-[node name="CharacterSheet" type="Node" parent="."]
-script = ExtResource("10_5yqnm")
-defence_percentage = 5
 
 [connection signal="health_changed" from="CharacterSheet" to="." method="_on_character_sheet_health_changed"]
 [connection signal="health_is_over" from="CharacterSheet" to="." method="_on_character_sheet_health_is_over"]

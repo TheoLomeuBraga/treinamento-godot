@@ -267,7 +267,7 @@ enum shot_types {
 var timer_next_shor : float = 0.1
 
 @export var shot_color : Color = Color.WHITE
-@export var shot_damage : float = 1
+@export var shot_damage : float = 10
 @export var shoot_speed  : float = 100
 @export var shoot_range  : float = 100
 @export var shoot_palets : int = 1
@@ -343,16 +343,15 @@ func _process(delta):
 
 
 func _on_character_sheet_health_changed(current_health, health_change):
-	print("current_health = ",current_health)
-	print("health_change = ",health_change)
+	pass
 
 
 func _on_character_sheet_health_is_over():
-	print("death")
+	pass
 
 
 
 
 
 func _on_character_sheet_no_effect():
-	print("no effect")
+	pass

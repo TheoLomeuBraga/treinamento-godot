@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://m3xvkp38hi1u"]
+[gd_scene load_steps=10 format=3 uid="uid://m3xvkp38hi1u"]
 
 [ext_resource type="Script" path="res://assets/loading_screen/loading_screen.gd" id="1_gho6b"]
 [ext_resource type="Theme" uid="uid://dp1hrate7dwva" path="res://styles/ui_cyberpunck_style.tres" id="2_olgvb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://cd3u54pfjq4l6" path="res://assets/player/player_run_particles.tres" id="6_tx6bd"]
 [ext_resource type="Material" uid="uid://bnsibsraa4qki" path="res://assets/player/player_hit_floor_particles.tres" id="7_gwpqj"]
 [ext_resource type="Environment" uid="uid://quxwkglreyj8" path="res://enviorment templates/enviorment_templates.tres" id="8_ch5t2"]
+[ext_resource type="PackedScene" uid="uid://0py3ynsdfe35" path="res://particle effects/spark blast/spark blast.tscn" id="9_v5dw8"]
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -69,3 +70,5 @@ one_shot = true
 explosiveness = 1.0
 process_material = ExtResource("7_gwpqj")
 draw_pass_1 = ExtResource("5_eqr05")
+
+[node name="SparkBlast" parent="particleRender" instance=ExtResource("9_v5dw8")]

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bor48mfaviahw"]
+
+[ext_resource type="Shader" path="res://shaders/psx_liquid.gdshader" id="1_e6kxo"]
+[ext_resource type="Texture2D" uid="uid://b8cjcj31uk5gm" path="res://textures/whater.png" id="2_5ebsc"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_e6kxo")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/scale = Vector2(25, 50)
+shader_parameter/amplitude = 0.1
+shader_parameter/frequency = 1.0
+shader_parameter/uv_speed = Vector2(0.1, 0.1)
+shader_parameter/albedo_texture = ExtResource("2_5ebsc")

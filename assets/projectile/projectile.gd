@@ -33,8 +33,9 @@ func _process(delta):
 		position += global_transform.basis.z.normalized() * -(delta * speed)
 		
 	if $RayCast3D.is_colliding() or travel_time >= range:
-		var colider = $RayCast3D.get_collider()
-		for c in colider.get_children():
-			if c is CharacterSheet:
-				c.hit(damage)
+		var collider = $RayCast3D.get_collider()
+		if collider != null:
+			for c in collider.get_children():
+				if c is CharacterSheet:
+					c.hit(damage)
 		queue_free()

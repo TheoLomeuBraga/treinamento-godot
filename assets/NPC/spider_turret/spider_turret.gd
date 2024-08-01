@@ -10,6 +10,8 @@ enum behavior{
 	off = 0,
 	idle = 1,
 	chase = 2,
+	pain = 3,
+	death = 3
 }
 var behavior_state : behavior = 1
 
@@ -35,7 +37,7 @@ func shot():
 			projectile.global_position = gunBarrel.global_position
 			projectile.global_rotation = gunBarrel.global_rotation
 			projectile.color = Color.RED
-			projectile.damage = 2
+			projectile.damage = 5
 			projectile.speed = 20
 			projectile.range = 100
 			colldown = 1
@@ -64,6 +66,21 @@ func chase(delta):
 	if position.distance_to(player_pos) < 20:
 		behavior_state = 1
 
+func pain(delta):
+	$spider_turret/AnimationPlayer.play("damage")
+		
+	colldown -= delta
+	if colldown <= 0:
+		behavior_state = 2
+
+@export var explosion_effect : PackedScene
+func death(delta):
+	if explosion_effect != null:
+		var explosion = explosion_effect.instantiate()
+		get_tree().get_root().add_child(explosion)
+		explosion.global_position = global_position
+		explosion.amount = 64
+	queue_free()
 
 func _process(delta):
 	
@@ -79,7 +96,10 @@ func _process(delta):
 				idle(delta)
 			elif behavior_state == 2:
 				chase(delta)
-				
+			elif behavior_state == 3:
+				pain(delta)
+			elif behavior_state == 4:
+				death(delta)
 
 func _physics_process(delta):
 	if player_pos != null:
@@ -96,3 +116,13 @@ func _physics_process(delta):
 
 
 
+
+
+func _on_character_sheet_health_changed(current_health, health_change):
+	if health_change < 0:
+		behavior_state = 3
+		colldown = 0.3
+
+
+func _on_character_sheet_health_is_over():
+	behavior_state = 4

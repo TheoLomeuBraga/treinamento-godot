@@ -13,7 +13,7 @@ enum behavior{
 	pain = 3,
 	death = 3
 }
-var behavior_state : behavior = 1
+var behavior_state : behavior = 0
 
 var gunBarrel : Node3D
 func _ready():
@@ -49,6 +49,11 @@ func shot():
 		else:
 			$spider_turret/AnimationPlayer.play("mele atack")
 			colldown = 1
+
+func off(delta):
+	$spider_turret/AnimationPlayer.play("idle")
+	if position.distance_to(player_pos) < 20:
+		behavior_state = 2
 
 func idle(delta):
 	if colldown <= 0:
@@ -96,7 +101,7 @@ func _process(delta):
 		player_pos = Global.variables["player"].position
 		if player_pos != null:
 			if behavior_state == 0:
-				$spider_turret/AnimationPlayer.play("idle") 
+				off(delta)
 			if behavior_state == 1:
 				idle(delta)
 			elif behavior_state == 2:

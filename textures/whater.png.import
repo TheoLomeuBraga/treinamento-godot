@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8cjcj31uk5gm"
-path.s3tc="res://.godot/imported/whater.png-955f2ded6c1259c839339b42bf9bf39e.s3tc.ctex"
+path="res://.godot/imported/whater.png-955f2ded6c1259c839339b42bf9bf39e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://textures/whater.png"
-dest_files=["res://.godot/imported/whater.png-955f2ded6c1259c839339b42bf9bf39e.s3tc.ctex"]
+dest_files=["res://.godot/imported/whater.png-955f2ded6c1259c839339b42bf9bf39e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

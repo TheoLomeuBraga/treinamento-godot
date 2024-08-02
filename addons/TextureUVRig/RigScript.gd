@@ -49,7 +49,4 @@ func _process(delta):
 		
 		mat.set("uv1_offset",Vector2(0.0,pos))
 		expressions_mesh.set_surface_override_material(0,mat) 
-		
-		if not Engine.is_editor_hint():
-			print(mat.get("uv1_offset"))
 

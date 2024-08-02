@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kwsuja2784by"]
+[gd_scene load_steps=9 format=3 uid="uid://kwsuja2784by"]
 
 [ext_resource type="Script" path="res://assets/signs/sign.gd" id="1_q76n5"]
 
@@ -72,6 +72,22 @@ shadow_mesh = SubResource("ArrayMesh_vkkf6")
 [sub_resource type="BoxShape3D" id="BoxShape3D_xfgjb"]
 size = Vector3(1, 5, 3)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_geolm"]
+bg_color = Color(0.645854, 0.0340635, 0.620161, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0, 0.211084, 0.527048, 1)
+
+[sub_resource type="Theme" id="Theme_8r8ep"]
+Label/colors/font_color = Color(0.371655, 0.777327, 1, 1)
+Label/colors/font_shadow_color = Color(0.207843, 0.227451, 0.996078, 1)
+Label/constants/shadow_offset_x = 2
+Label/constants/shadow_offset_y = 1
+Label/font_sizes/font_size = 32
+Label/styles/normal = SubResource("StyleBoxFlat_geolm")
+
 [node name="NeonSign" type="Node3D"]
 script = ExtResource("1_q76n5")
 
@@ -86,3 +102,9 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.49951, 0)
 shape = SubResource("BoxShape3D_xfgjb")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_right = 1152.0
+offset_bottom = 216.0
+theme = SubResource("Theme_8r8ep")

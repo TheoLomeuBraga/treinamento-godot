@@ -15,10 +15,15 @@ func _process(delta):
 	player_pos = Global.variables["player"].position
 	if Global.variables["player"].nearst_signes.size() > 0 and Global.variables["player"].nearst_signes[0] == self and position.distance_to(player_pos) < 5 and Input.is_action_just_pressed("interact"):
 		
-		if current_action >= dialog.size():
-			current_action = 0
+		Global.variables["player"].in_conversation = true
+		$Label.visible = true
 		
-		print(tr(dialog[current_action]))
+		if current_action >= dialog.size():
+			Global.variables["player"].in_conversation = false
+			current_action = -1
+			$Label.visible = false
+		
+		$Label.text = tr(dialog[current_action])
 		current_action += 1
 		
 	elif position.distance_to(player_pos) > 5:

@@ -353,7 +353,7 @@ func _process(delta):
 			move(delta)
 			if player_input_on:
 				look_around(delta)
-				if upgrade_list["cannon"]:
+				if upgrade_list["cannon"] and not is_runing:
 					shot(delta)
 			update_ui()
 			organize_signes(delta)

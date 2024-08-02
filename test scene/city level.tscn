@@ -88,7 +88,7 @@ dialog = Array[String](["TUTORIAL_1", "TUTORIAL_2", "TUTORIAL_3"])
 
 [node name="NeonSign2" parent="NavigationRegion3D" instance=ExtResource("7_ram06")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 25, 0.305873, -6.52116)
-dialog = Array[String](["TUTORIAL_1", "TUTORIAL_2", "TUTORIAL_3"])
+dialog = Array[String](["TUTORIAL_4", "TUTORIAL_5", "TUTORIAL_6"])
 
 [node name="city_level" parent="NavigationRegion3D" instance=ExtResource("8_pbryd")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1.01114)

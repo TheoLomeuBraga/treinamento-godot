@@ -1,12 +1,17 @@
 @tool
 extends Node
 
+@export var expressions_rig_path : NodePath
+@export var expressions_mesh_path : NodePath
 
-var m : Material
+var expressions_rig : Node3D
+var expressions_mesh : MeshInstance3D
+
+
+
 func _ready():
-	if expressions_mesh.get_surface_override_material(0) == null:
-		expressions_mesh.set_surface_override_material(0,expressions_mesh.mesh.surface_get_material(0).duplicate())
-	m = expressions_mesh.get_surface_override_material(0)
+	expressions_rig = get_node(expressions_rig_path)
+	expressions_mesh = get_node(expressions_mesh_path)
 
 @export var expressions_size : int = 1.0
 
@@ -17,14 +22,13 @@ enum axis {
 }
 @export var rig_axis : axis 
 
-@export var expressions_rig : Node3D
-@export var expressions_mesh : MeshInstance3D
+
 
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if expressions_size > 0 and expressions_rig != null and expressions_mesh != null and m != null:
+	if expressions_size > 0 and expressions_rig != null and expressions_mesh != null:
 		var pos : float
 		if rig_axis == 0:
 			pos = float(int(expressions_rig.position.x))
@@ -38,7 +42,14 @@ func _process(delta):
 		pos *= step_size
 		pos -= step_size
 		
-		if m != null:
-			m.set("uv1_offset",Vector2(0.0,pos))
-			expressions_mesh.set_surface_override_material(0,m) 
-	#print(expressions_size > 0 , expressions_rig != null , expressions_mesh != null , m != null)
+		
+		var mat : Material
+		mat = expressions_mesh.mesh.surface_get_material(0).duplicate()
+			
+		
+		mat.set("uv1_offset",Vector2(0.0,pos))
+		expressions_mesh.set_surface_override_material(0,mat) 
+		
+		if not Engine.is_editor_hint():
+			print(mat.get("uv1_offset"))
+

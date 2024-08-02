@@ -3,15 +3,15 @@
 importer="3d_texture"
 type="CompressedTexture3D"
 uid="uid://dd0t6h10clxmu"
-path="res://.godot/imported/city level.GPUParticlesCollisionSDF3D_data.exr-21102724636e3589b6a76a0bad5dd4c6.ctex3d"
+path="res://.godot/imported/city level.GPUParticlesCollisionSDF3D_data.exr-818190001644a9bfbae482fd7e287c99.ctex3d"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://testes cenas/city level.GPUParticlesCollisionSDF3D_data.exr"
-dest_files=["res://.godot/imported/city level.GPUParticlesCollisionSDF3D_data.exr-21102724636e3589b6a76a0bad5dd4c6.ctex3d"]
+source_file="res://test scene/city level.GPUParticlesCollisionSDF3D_data.exr"
+dest_files=["res://.godot/imported/city level.GPUParticlesCollisionSDF3D_data.exr-818190001644a9bfbae482fd7e287c99.ctex3d"]
 
 [params]
 

@@ -101,7 +101,7 @@ offset_left = 619.0
 offset_top = 95.0
 offset_right = 882.0
 offset_bottom = 111.0
-max_value = 25.0
+max_value = 16.0
 value = 12.0
 
 [node name="MENU_TAB_LANGUAGE" type="TabBar" parent="TabContainer"]

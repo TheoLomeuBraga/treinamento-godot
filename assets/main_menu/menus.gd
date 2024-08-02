@@ -54,7 +54,7 @@ func _on_continue__pressed():
 
 func _on_new_game_pressed():
 	#get_tree().change_scene_to_file("res://testes cenas/city level.tscn")
-	Global.load_scene("res://testes cenas/city level.tscn")
+	Global.load_scene("res://test scene/city level.tscn")
 
 func _on_configurations_pressed():
 	menu_type = 2

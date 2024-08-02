@@ -1,13 +1,13 @@
 [gd_scene load_steps=15 format=3 uid="uid://gt75hoibpm27"]
 
-[ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="1_hmnjv"]
-[ext_resource type="Environment" uid="uid://quxwkglreyj8" path="res://enviorment templates/enviorment_templates.tres" id="1_x7ye3"]
-[ext_resource type="Material" uid="uid://bor48mfaviahw" path="res://materials/whater.tres" id="3_mpsby"]
-[ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="3_ycf6e"]
-[ext_resource type="PackedScene" uid="uid://cd6fpwl5rd5jw" path="res://assets/reset_position_triger/reset_position_triger.tscn" id="4_5ej0h"]
-[ext_resource type="PackedScene" uid="uid://dmt0vrjojotty" path="res://assets/chekinpoint/chekinpoint.tscn" id="5_ovtph"]
-[ext_resource type="PackedScene" uid="uid://kwsuja2784by" path="res://assets/signs/neon sign/neon sign.tscn" id="8_ajgvf"]
-[ext_resource type="PackedScene" uid="uid://ddijvwb6bc7tu" path="res://assets/NPC/spider_turret/spider_turret.tscn" id="8_nnwij"]
+[ext_resource type="Environment" uid="uid://quxwkglreyj8" path="res://enviorment templates/enviorment_templates.tres" id="1_d3nln"]
+[ext_resource type="PackedScene" uid="uid://cd6fpwl5rd5jw" path="res://assets/reset_position_triger/reset_position_triger.tscn" id="2_emwi7"]
+[ext_resource type="Material" uid="uid://bor48mfaviahw" path="res://materials/whater.tres" id="3_liunb"]
+[ext_resource type="PackedScene" uid="uid://bjlgeaaroug1" path="res://assets/player/player.tscn" id="4_sbv5u"]
+[ext_resource type="PackedScene" uid="uid://dmt0vrjojotty" path="res://assets/chekinpoint/chekinpoint.tscn" id="5_nuwxb"]
+[ext_resource type="PackedScene" uid="uid://ddijvwb6bc7tu" path="res://assets/NPC/spider_turret/spider_turret.tscn" id="6_fb3ee"]
+[ext_resource type="PackedScene" uid="uid://kwsuja2784by" path="res://assets/signs/neon sign/neon sign.tscn" id="7_ram06"]
+[ext_resource type="PackedScene" uid="uid://ct5vy8wlkbd6s" path="res://levels/city_level.glb" id="8_pbryd"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hhki4"]
 
@@ -33,10 +33,10 @@ agent_radius = 2.0
 [node name="CityLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_x7ye3")
+environment = ExtResource("1_d3nln")
 camera_attributes = SubResource("CameraAttributesPractical_hhki4")
 
-[node name="ResetPositionTriger" parent="." instance=ExtResource("4_5ej0h")]
+[node name="ResetPositionTriger" parent="." instance=ExtResource("2_emwi7")]
 transform = Transform3D(325.11, 0, 0, 0, 9.14, 0, 0, 0, 629.685, 14.102, -10.4652, 0.594251)
 
 [node name="sters" type="Node3D" parent="."]
@@ -64,42 +64,47 @@ shape = SubResource("ConcavePolygonShape3D_iaku7")
 [node name="whater" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, -3, 0)
 mesh = SubResource("QuadMesh_vos3v")
-surface_material_override/0 = ExtResource("3_mpsby")
+surface_material_override/0 = ExtResource("3_liunb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="whater"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4201e-08, -0.553654)
 mesh = SubResource("QuadMesh_ss772")
-surface_material_override/0 = ExtResource("3_mpsby")
+surface_material_override/0 = ExtResource("3_liunb")
 
-[node name="Player" parent="." instance=ExtResource("3_ycf6e")]
+[node name="Player" parent="." instance=ExtResource("4_sbv5u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0715, 1.56635, -6.5809)
 shot_type = 0
 fire_rate = 0.25
 
-[node name="Chekinpoint" parent="." instance=ExtResource("5_ovtph")]
+[node name="Chekinpoint" parent="." instance=ExtResource("5_nuwxb")]
 transform = Transform3D(4, 0, 0, 0, 2, 0, 0, 0, 4, -25.8868, 2.56635, 7.16328)
-
-[node name="SpiderTurret" parent="." instance=ExtResource("8_nnwij")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -16.5211, 1.781, 15.0559)
-
-[node name="SpiderTurret2" parent="." instance=ExtResource("8_nnwij")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -10.4722, 1.781, 14.1944)
-
-[node name="SpiderTurret3" parent="." instance=ExtResource("8_nnwij")]
-transform = Transform3D(-0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -5.22394, 1.781, 13.4759)
-
-[node name="SpiderTurret4" parent="." instance=ExtResource("8_nnwij")]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -8.22394, 1.781, 21.4759)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_1mwng")
 
-[node name="NeonSign" parent="NavigationRegion3D" instance=ExtResource("8_ajgvf")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.305873, -7)
+[node name="NeonSign" parent="NavigationRegion3D" instance=ExtResource("7_ram06")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0, 0.305873, -6.52116)
+dialog = Array[String](["TUTORIAL_1", "TUTORIAL_2", "TUTORIAL_3"])
 
-[node name="city_level" parent="NavigationRegion3D" instance=ExtResource("1_hmnjv")]
+[node name="NeonSign2" parent="NavigationRegion3D" instance=ExtResource("7_ram06")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 25, 0.305873, -6.52116)
+dialog = Array[String](["TUTORIAL_1", "TUTORIAL_2", "TUTORIAL_3"])
+
+[node name="city_level" parent="NavigationRegion3D" instance=ExtResource("8_pbryd")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.173018, 0.0663528, 1.01114)
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="NavigationRegion3D/city_level"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -23.1031, 1.03457, 0.710455)
 size = Vector3(0.001, 151.012, 133.09)
+
+[node name="SpiderTurret" parent="." instance=ExtResource("6_fb3ee")]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -14.7012, 1.56635, 20.8479)
+
+[node name="SpiderTurret2" parent="." instance=ExtResource("6_fb3ee")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -5.70121, 1.56635, 21.8479)
+
+[node name="SpiderTurret3" parent="." instance=ExtResource("6_fb3ee")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -9.70121, 1.56635, 16.8479)
+
+[node name="SpiderTurret4" parent="." instance=ExtResource("6_fb3ee")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, -9.70121, 1.56635, 26.8479)

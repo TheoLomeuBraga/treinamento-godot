@@ -73,13 +73,35 @@ func chase(delta):
 	if position.distance_to(player_pos) < 20:
 		behavior_state = 1
 
+@onready var damage_paint_targets : Array[MeshInstance3D] = [
+	$spider_turret/Armature/GeneralSkeleton/Cube/Cube,
+	$spider_turret/Armature/GeneralSkeleton/Cube_001/Cube_001,
+	$spider_turret/Armature/GeneralSkeleton/Cube_013/Cube_013,
+	$spider_turret/Armature/GeneralSkeleton/Cube_012/Cube_012,
+	$spider_turret/Armature/GeneralSkeleton/Cube_007/Cube_007,
+	$spider_turret/Armature/GeneralSkeleton/Cube_006/Cube_006,
+	$spider_turret/Armature/GeneralSkeleton/Cube_005/Cube_005,
+	$spider_turret/Armature/GeneralSkeleton/Cube_016/Cube_016,
+	$spider_turret/Armature/GeneralSkeleton/Cube_015/Cube_015,
+	$spider_turret/Armature/GeneralSkeleton/Cube_014/Cube_014,
+	$spider_turret/Armature/GeneralSkeleton/Cube_010/Cube_010,
+	$spider_turret/Armature/GeneralSkeleton/Cube_009/Cube_009,
+	$spider_turret/Armature/GeneralSkeleton/Cube_008/Cube_008,
+	$spider_turret/Armature/GeneralSkeleton/base/base,
+]
 func set_color(color : Color):
+	
 	for m in damage_paint_targets:
-		if m.get_surface_override_material(0) == null:
-			m.set_surface_override_material(0,m.mesh.surface_get_material(0).duplicate())
-		m.get_surface_override_material(0).set("albedo_color",color)
+		var mat : Material
+		if  m.get_surface_override_material(0) == null:
+			mat = m.mesh.surface_get_material(0).duplicate()
+		else:
+			mat = m.get_surface_override_material(0)
+		
+		mat.set("albedo_color",color)
+		m.set_surface_override_material(0,mat)
 
-@export var damage_paint_targets : Array[MeshInstance3D]
+
 func pain(delta):
 	$spider_turret/AnimationPlayer.play("damage")
 	

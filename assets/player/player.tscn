@@ -107,6 +107,14 @@ target_position = Vector3(0, 0.45, 0)
 
 [node name="cameraRootY" type="Node3D" parent="."]
 
+[node name="interrogation" type="Label3D" parent="cameraRootY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+pixel_size = 0.05
+texture_filter = 0
+outline_modulate = Color(0, 0, 0, 0)
+text = "?
+"
+
 [node name="cameraRootX" type="Node3D" parent="cameraRootY"]
 
 [node name="gunBarrel" type="Node3D" parent="cameraRootY/cameraRootX"]

@@ -325,7 +325,28 @@ func update_ui():
 	$HUD/HealthBar.value = $CharacterSheet.health
 	$HUD/PowerBar.value = $CharacterSheet.power
 
+
+func _sort_by_distance(a: Node3D, b: Node3D) -> bool:
+	var distance_a = global_position.distance_to(a.global_transform.origin)
+	var distance_b = global_position.distance_to(b.global_transform.origin)
+	return distance_a < distance_b
+
+var organize_signes_timer : float = 0
+var nearst_signes : Array[Node3D]
+func organize_signes(delta):
+	if organize_signes_timer <= 0:
+		nearst_signes.sort_custom(_sort_by_distance)
+		$cameraRootY/interrogation.visible = nearst_signes.size() > 0 and nearst_signes[0].global_position.distance_to(global_position) < 5
+		organize_signes_timer = RandomNumberGenerator.new().randf_range(0.2,0.5)
+	organize_signes_timer -= delta
+
+
 var in_conversation : bool = false
+func make_conversation_stuf(delta):
+	pass
+
+
+
 func _process(delta):
 	if !Global.variables["pause"]:
 		if not in_conversation:
@@ -335,8 +356,9 @@ func _process(delta):
 				if upgrade_list["cannon"]:
 					shot(delta)
 			update_ui()
+			organize_signes(delta)
 		else:
-			pass
+			make_conversation_stuf(delta)
 		
 	
 	if Input.is_action_just_pressed("pause"):

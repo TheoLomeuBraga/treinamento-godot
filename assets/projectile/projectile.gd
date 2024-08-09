@@ -17,7 +17,7 @@ var travel_time : float = 0
 @export var explosion_effect : PackedScene
 @export var hit_sound : PackedScene
 
-func _process(delta):
+func _physics_process(delta):
 	
 	
 
